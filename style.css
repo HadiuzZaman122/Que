@@ -1,0 +1,3652 @@
+/* ==========================================================================
+   A STORY OF US — RICH ROMANTIC EDITORIAL SCRAPBOOK & SLIDE STORYBOOK
+   Palette: Very Light Soft Pastels, Warm Ivory, Deep Wine, Muted Rose & Gold
+   ========================================================================== */
+
+:root {
+  /* Soft Romantic Pastel Page Backgrounds */
+  --bg-page-1: #fdf5f6; /* Very light soft blush / dusty rose */
+  --bg-page-2: #fdfbf7; /* Very light warm cream parchment */
+  --bg-page-3: #fdf2ed; /* Very light soft peach / rose tint */
+  --bg-page-4: #fdf6f2; /* Very light pastel peach / warm ivory */
+  --bg-page-5: #fbebf0; /* Soft romantic dusty rose */
+  --bg-page-6: #fdf9f0; /* Soft warm champagne / cream */
+  --bg-page-7: #faf3f5; /* Delicate blush ivory for Memory Gallery */
+
+  --bg-card: #ffffff;
+  --bg-card-warm: #fffdf9;
+  --bg-card-highlight: #faf3eb;
+
+  /* Typography Colors */
+  --text-main: #1f191b;
+  --text-secondary: #52484c;
+  --text-muted: #887b80;
+
+  /* Romantic Accent Colors */
+  --color-wine-dark: #47111b;
+  --color-wine: #6e1c2c;
+  --color-wine-light: #8f293d;
+  --color-rose: #c47687;
+  --color-rose-light: #e8b0bd;
+  --color-rose-soft: #fcedf0;
+
+  /* Luxury Champagne & Gold Accents */
+  --color-gold: #c9a050;
+  --color-gold-bright: #e5be6b;
+  --color-gold-light: #fbf0d3;
+  --gold-gradient: linear-gradient(135deg, #f7e7c4 0%, #dfb867 50%, #ba8e3b 100%);
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(40, 25, 30, 0.08);
+  --border-medium: rgba(110, 28, 44, 0.16);
+  --border-gold: rgba(201, 160, 80, 0.35);
+  
+  --shadow-sm: 0 4px 14px rgba(45, 25, 32, 0.05);
+  --shadow-md: 0 12px 30px rgba(45, 25, 32, 0.08);
+  --shadow-lg: 0 20px 45px rgba(45, 25, 32, 0.12);
+  --shadow-polaroid: 0 16px 36px rgba(40, 20, 28, 0.1);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Caveat', cursive;
+
+  /* Layout & Animation */
+  --container-max: 1040px;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Strict no-scroll for the proposal application */
+  background-color: var(--bg-page-1);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.scrapbook-page {
+  transition: background-color 0.8s var(--ease-smooth);
+}
+
+/* Film Grain Texture Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  filter: url(#paper-grain);
+  opacity: 0.45;
+}
+
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Atmosphere Ambient Canvas Layer */
+.ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   ROMANTIC GARDEN FRAME & PASTEL SIDE WAVES (MARGIN ARTWORK)
+   ========================================================================== */
+
+.romantic-garden-frame {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Vertical Pastel Flowing Waves (Sides) */
+.side-waves-svg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 280px;
+  max-width: 24vw;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.wave-left {
+  left: 0;
+  transform-origin: left center;
+  animation: wave-flow-left 16s ease-in-out infinite alternate;
+}
+
+.wave-right {
+  right: 0;
+  transform-origin: right center;
+  animation: wave-flow-right 18s ease-in-out infinite alternate;
+}
+
+@keyframes wave-flow-left {
+  0% { transform: scaleX(0.94) translateY(0); }
+  50% { transform: scaleX(1.08) translateY(-14px); }
+  100% { transform: scaleX(0.97) translateY(12px); }
+}
+
+@keyframes wave-flow-right {
+  0% { transform: scaleX(0.95) translateY(0); }
+  50% { transform: scaleX(1.07) translateY(16px); }
+  100% { transform: scaleX(0.93) translateY(-12px); }
+}
+
+/* Botanical Corner & Margin Compositions */
+.botanical-cluster {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 4px 14px rgba(90, 45, 60, 0.06));
+}
+
+.botanical-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Top-Left Cluster */
+.cluster-top-left {
+  top: -12px;
+  left: -12px;
+  width: 260px;
+  max-width: 22vw;
+  transform-origin: top left;
+  animation: botanic-sway-tl 12s ease-in-out infinite alternate;
+}
+
+/* Top-Right Cluster */
+.cluster-top-right {
+  top: -12px;
+  right: -12px;
+  width: 260px;
+  max-width: 22vw;
+  transform-origin: top right;
+  animation: botanic-sway-tr 14s ease-in-out infinite alternate;
+}
+
+/* Mid-Left Margin Spray */
+.cluster-mid-left {
+  top: 48%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 140px;
+  max-width: 13vw;
+  transform-origin: left center;
+  animation: botanic-breeze-left 11s ease-in-out infinite alternate;
+}
+
+/* Mid-Right Margin Spray */
+.cluster-mid-right {
+  top: 52%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 140px;
+  max-width: 13vw;
+  transform-origin: right center;
+  animation: botanic-breeze-right 13s ease-in-out infinite alternate;
+}
+
+/* Bottom-Left Cluster */
+.cluster-bottom-left {
+  bottom: -10px;
+  left: -10px;
+  width: 220px;
+  max-width: 18vw;
+  transform-origin: bottom left;
+  animation: botanic-sway-bl 15s ease-in-out infinite alternate;
+}
+
+/* Bottom-Right Cluster */
+.cluster-bottom-right {
+  bottom: -10px;
+  right: -10px;
+  width: 220px;
+  max-width: 18vw;
+  transform-origin: bottom right;
+  animation: botanic-sway-br 16s ease-in-out infinite alternate;
+}
+
+@keyframes botanic-sway-tl {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(1.8deg) scale(1.02); }
+  100% { transform: rotate(-1.2deg) scale(0.99); }
+}
+
+@keyframes botanic-sway-tr {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-1.6deg) scale(1.02); }
+  100% { transform: rotate(1.2deg) scale(0.99); }
+}
+
+@keyframes botanic-breeze-left {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-52%) rotate(2deg); }
+  100% { transform: translateY(-48%) rotate(-1.5deg); }
+}
+
+@keyframes botanic-breeze-right {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-48%) rotate(-2deg); }
+  100% { transform: translateY(-52%) rotate(1.5deg); }
+}
+
+@keyframes botanic-sway-bl {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(1.5deg) scale(1.02); }
+  100% { transform: rotate(-1deg) scale(0.99); }
+}
+
+@keyframes botanic-sway-br {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-1.5deg) scale(1.02); }
+  100% { transform: rotate(1deg) scale(0.99); }
+}
+
+/* ==========================================================================
+   SPA FIXED 100VW x 100VH STORY CONTAINER & SLIDE SYSTEM
+   ========================================================================== */
+
+.story-app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.story-page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.985);
+  transition: opacity 0.65s var(--ease-smooth), transform 0.65s var(--ease-smooth);
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 4.5rem 1.5rem 2.5rem;
+}
+
+.story-page.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  z-index: 5;
+}
+
+/* Specific Page Ambient Glow Accents (Pure CSS) */
+.page-ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.glow-pink {
+  top: 25%;
+  right: 12%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232, 176, 189, 0.35) 0%, transparent 70%);
+}
+
+.glow-warm {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(245, 235, 220, 0.5) 0%, transparent 70%);
+}
+
+.glow-peach {
+  top: 35%;
+  right: 15%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(245, 215, 205, 0.4) 0%, transparent 70%);
+}
+
+.glow-ivory {
+  top: 35%;
+  left: 15%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(248, 225, 210, 0.45) 0%, transparent 70%);
+}
+
+.glow-rose {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232, 176, 189, 0.45) 0%, rgba(201, 160, 80, 0.15) 50%, transparent 75%);
+}
+
+.glow-gold {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(245, 230, 195, 0.5) 0%, rgba(232, 176, 189, 0.25) 50%, transparent 75%);
+}
+
+.proposal-light-beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(201, 160, 80, 0.45) 0%, transparent 80%);
+  box-shadow: 0 0 25px 1px rgba(201, 160, 80, 0.25);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   MINIMAL EDITORIAL HEADER
+   ========================================================================== */
+
+.editorial-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.1rem 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(253, 245, 246, 0.92) 0%, rgba(253, 245, 246, 0) 100%);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-monogram {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--color-wine);
+  font-size: 1rem;
+}
+
+.nav-sep {
+  color: var(--border-subtle);
+}
+
+.nav-title {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.nav-chapter {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-wine);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SIDE PAGE DOT NAVIGATION
+   ========================================================================== */
+
+.side-page-nav {
+  position: fixed;
+  right: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  z-index: 90;
+}
+
+.page-dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  background: rgba(110, 28, 44, 0.2);
+  border: 1px solid rgba(110, 28, 44, 0.35);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-smooth);
+}
+
+.page-dot:hover {
+  background: var(--color-wine);
+  transform: scale(1.3);
+}
+
+.page-dot.active {
+  background: var(--color-wine);
+  height: 22px;
+  border-radius: 4px;
+  border-color: var(--color-wine);
+  box-shadow: 0 0 10px rgba(110, 28, 44, 0.3);
+}
+
+.dot-label {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: #fff;
+  border: 1px solid var(--border-medium);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--color-wine);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.page-dot:hover .dot-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 900px) {
+  .side-page-nav {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ROMANTIC FLOATING JOURNEY QUICK NAVIGATION MENU
+   ========================================================================== */
+
+.journey-nav-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 120;
+}
+
+/* Floating Pill Button */
+.journey-trigger-btn {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border-medium);
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(110, 28, 44, 0.16), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.journey-trigger-btn:hover {
+  background: #ffffff;
+  border-color: var(--color-wine);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(110, 28, 44, 0.24);
+}
+
+.journey-btn-icon {
+  font-size: 0.95rem;
+  color: var(--color-wine);
+  display: inline-block;
+  animation: sparkle-pulse 3s infinite ease-in-out;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.25) rotate(15deg); opacity: 1; color: var(--color-gold-bright); }
+}
+
+.journey-btn-label {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-wine);
+}
+
+/* Popover Navigation Card */
+.journey-popover-menu {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  right: 0;
+  width: 320px;
+  max-width: 90vw;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.1rem;
+  box-shadow: 0 20px 50px rgba(45, 20, 30, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(14px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.32s var(--ease-smooth);
+  transform-origin: bottom right;
+}
+
+.journey-popover-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.4rem 0.6rem 0.4rem;
+}
+
+.popover-tag {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-rose);
+}
+
+.popover-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-wine);
+  line-height: 1.2;
+}
+
+.popover-close-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.popover-close-btn:hover {
+  background: var(--color-rose-soft);
+  color: var(--color-wine);
+  border-color: var(--border-medium);
+}
+
+.popover-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-wine) 0%, rgba(110, 28, 44, 0.12) 80%, transparent 100%);
+  margin-bottom: 0.75rem;
+}
+
+.journey-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.journey-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.22s ease;
+}
+
+.journey-menu-item:hover {
+  background: var(--color-rose-soft);
+  border-color: rgba(110, 28, 44, 0.12);
+  transform: translateX(3px);
+}
+
+.journey-menu-item .item-num {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--color-wine);
+  opacity: 0.65;
+  width: 20px;
+}
+
+.journey-menu-item .item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-menu-item .item-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.journey-menu-item .item-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+/* Featured Our Story Highlight */
+.journey-menu-item.item-featured {
+  background: linear-gradient(135deg, #fff7f9 0%, #fdf3ee 100%);
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 2px 8px rgba(201, 160, 80, 0.15);
+  margin: 0.2rem 0;
+}
+
+.journey-menu-item.item-featured:hover {
+  background: linear-gradient(135deg, #ffedf1 0%, #fae8df 100%);
+  border-color: var(--color-wine);
+  box-shadow: 0 4px 12px rgba(110, 28, 44, 0.18);
+}
+
+.item-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.item-badge {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--color-wine);
+  background: rgba(223, 184, 103, 0.25);
+  border: 1px solid rgba(201, 160, 80, 0.4);
+  padding: 0.08rem 0.45rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
+}
+
+.item-arrow {
+  font-size: 0.9rem;
+  color: var(--color-wine);
+  transition: transform 0.2s ease;
+}
+
+.journey-menu-item.item-featured:hover .item-arrow {
+  transform: translateX(3px);
+}
+
+.popover-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  border-top: 1px dashed rgba(110, 28, 44, 0.12);
+}
+
+.popover-heart-icon {
+  color: var(--color-rose);
+  font-size: 0.9rem;
+}
+
+.popover-footer-note {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--color-wine);
+}
+
+@media (max-width: 900px) {
+  .journey-nav-widget {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .journey-trigger-btn {
+    padding: 0.55rem 1rem;
+  }
+
+  .journey-btn-label {
+    font-size: 0.76rem;
+  }
+
+  .journey-popover-menu {
+    width: 290px;
+    max-width: calc(100vw - 2.4rem);
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 1rem 0.9rem;
+  }
+}
+
+/* ==========================================================================
+   SHARED LAYOUT CONTAINERS & TYPOGRAPHY
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  position: relative;
+}
+
+.slide-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100vh - 7rem);
+}
+
+.page-content {
+  position: relative;
+  z-index: 2;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Section Header Badges */
+.section-badge-header {
+  margin-bottom: 2rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-wine);
+  margin-bottom: 0.4rem;
+}
+
+.section-tag-gold {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-wine);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.section-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtext {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   NAVIGATION BUTTONS
+   ========================================================================== */
+
+.btn-primary-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--color-wine);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  box-shadow: 0 10px 28px rgba(110, 28, 44, 0.28);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-smooth);
+  text-decoration: none;
+}
+
+.btn-primary-pill:hover {
+  background: var(--color-wine-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(110, 28, 44, 0.38);
+}
+
+.btn-primary-pill:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-arrow {
+  transition: transform 0.25s ease;
+}
+
+.btn-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn-primary-pill:hover .btn-shimmer,
+.btn-chapter-continue:hover .btn-shimmer {
+  left: 150%;
+}
+
+.btn-large-gold {
+  background: linear-gradient(135deg, #a62a42 0%, #6e1c2c 100%);
+  border: 1px solid var(--border-gold);
+  font-size: 1rem;
+  padding: 1.15rem 2.6rem;
+  box-shadow: 0 10px 30px rgba(166, 42, 66, 0.35);
+}
+
+.btn-large-gold:hover {
+  background: linear-gradient(135deg, #bd324d 0%, #521420 100%);
+  box-shadow: 0 14px 40px rgba(166, 42, 66, 0.5);
+}
+
+.page-action-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-chapter-continue {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--color-wine);
+  color: #fff;
+  border: none;
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(110, 28, 44, 0.22);
+  overflow: hidden;
+  transition: all 0.35s var(--ease-smooth);
+}
+
+.btn-chapter-continue:hover {
+  background: var(--color-wine-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(110, 28, 44, 0.32);
+}
+
+.btn-chapter-continue:hover .continue-arrow {
+  transform: translateX(4px);
+}
+
+.continue-arrow {
+  transition: transform 0.25s ease;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   PAGE 1: OPENING HERO (PROLOGUE)
+   ========================================================================== */
+
+.opening-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.opening-text-col {
+  position: relative;
+}
+
+.eyebrow-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.eyebrow-accent-line {
+  width: 32px;
+  height: 1px;
+  background: var(--color-wine);
+}
+
+.eyebrow-text {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-wine);
+  font-weight: 600;
+}
+
+.eyebrow-script {
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  color: var(--color-rose);
+  transform: rotate(-5deg);
+}
+
+.opening-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 5.2vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+  margin-bottom: 1.2rem;
+}
+
+.serif-italic-accent {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-wine);
+  display: inline-block;
+}
+
+.opening-subtitle {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 2.2rem;
+}
+
+/* Opening Visual Polaroid */
+.opening-visual-col {
+  display: flex;
+  justify-content: center;
+}
+
+.scrapbook-preview-card {
+  position: relative;
+  transform: rotate(2.5deg);
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.scrapbook-preview-card:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.preview-polaroid {
+  background: #fff;
+  padding: 0.9rem 0.9rem 1.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  width: 270px;
+}
+
+.polaroid-inner-art {
+  width: 100%;
+  height: 230px;
+  background: linear-gradient(135deg, #f7d6dc 0%, #e8b0bd 50%, #c47687 100%);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.polaroid-caption {
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 0.8rem;
+}
+
+.tape-strip {
+  position: absolute;
+  width: 80px;
+  height: 24px;
+  background: rgba(245, 230, 215, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.tape-top-right {
+  top: -10px;
+  right: -12px;
+  transform: rotate(18deg);
+}
+
+.tape-top-left {
+  top: -10px;
+  left: -12px;
+  transform: rotate(-18deg);
+}
+
+.tape-center {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.wax-seal-badge {
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #852233 0%, #541521 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(84, 21, 33, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fce8ec;
+  font-size: 1.1rem;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   PAGE 2: APOLOGY SECTION (PERSONAL LETTER)
+   ========================================================================== */
+
+.apology-editorial-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.letter-sheet {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 2.8rem 3rem 2.2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.letter-tape-accent {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 24px;
+  background: rgba(235, 215, 195, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.letter-header {
+  margin-bottom: 1.6rem;
+}
+
+.section-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.handwritten-tag {
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  color: var(--color-wine);
+}
+
+.letter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.2vw, 3rem);
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+.letter-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-wine) 0%, rgba(110, 28, 44, 0.1) 80%, transparent 100%);
+  margin-top: 0.9rem;
+}
+
+.letter-content-body {
+  margin-bottom: 1.8rem;
+}
+
+.letter-para-lead {
+  font-family: var(--font-editorial);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 0.9rem;
+}
+
+.letter-para {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.letter-para-highlight {
+  color: var(--color-wine);
+  font-weight: 500;
+}
+
+.letter-para-conclusion {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  font-style: italic;
+  padding-top: 0.2rem;
+}
+
+.letter-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px dashed rgba(110, 28, 44, 0.15);
+  padding-top: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.letter-signoff {
+  display: flex;
+  flex-direction: column;
+}
+
+.signoff-pre {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.signoff-signature {
+  font-family: var(--font-script);
+  font-size: 1.9rem;
+  color: var(--color-wine);
+  line-height: 1.2;
+}
+
+.wax-seal-stamp {
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle, #7e1e30 0%, #47111b 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(71, 17, 27, 0.4);
+}
+
+.stamp-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f7e0e5;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+}
+
+.stamp-inner strong {
+  font-size: 0.75rem;
+  color: var(--color-gold-bright);
+}
+
+.letter-continue-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   PAGE 3 & MEMORY SECTIONS: ROMANTIC HANGING PHOTO INSTALLATION
+   Suspended photographs hanging from thin curved twine ropes with wooden pegs
+   ========================================================================== */
+
+.hanging-installation-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Horizontal Subtle Twine Suspension Cord */
+.hanging-twine-bar {
+  position: relative;
+  width: 94%;
+  max-width: 820px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #d4b5a4 12%, #b58f7c 50%, #d4b5a4 88%, transparent 100%);
+  margin-bottom: 0;
+  z-index: 3;
+  box-shadow: 0 1px 2px rgba(90, 50, 40, 0.12);
+}
+
+.twine-knot {
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #966f5c;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.knot-left { left: 16%; }
+.knot-center { left: 50%; transform: translateX(-50%); }
+.knot-right { right: 16%; }
+
+/* Hanging Photos Row */
+.hanging-photos-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+}
+
+/* 3 Photos Layout: Varied heights & angles */
+.hanging-photos-row.count-3 {
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.hanging-photos-row.count-3 .hanging-photo-item {
+  flex: 1;
+  max-width: 290px;
+}
+
+/* 2 Photos Layout: Two staggered hanging photos */
+.hanging-photos-row.count-2 {
+  justify-content: center;
+  gap: 3.5rem;
+}
+
+.hanging-photos-row.count-2 .hanging-photo-item {
+  width: 44%;
+  max-width: 320px;
+}
+
+/* 1 Photo Layout: Single larger centered hanging photo */
+.hanging-photos-row.count-1 {
+  justify-content: center;
+}
+
+.hanging-photos-row.count-1 .hanging-photo-item {
+  width: 100%;
+  max-width: 380px;
+}
+
+.hanging-photos-row.count-1 .polaroid-img-box {
+  height: 240px;
+}
+
+/* Hanging Photo Item Container */
+.hanging-photo-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.hanging-photo-item:hover {
+  z-index: 20;
+}
+
+/* The Hanging Rope / Twine String */
+.hanging-rope {
+  position: relative;
+  width: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  margin-bottom: -9px;
+}
+
+.rope-curve-svg {
+  width: 14px;
+  display: block;
+  overflow: visible;
+}
+
+/* Varied Hanging Rope Heights */
+.hanging-drop-1 .rope-curve-svg { height: 38px; }
+.hanging-drop-2 .rope-curve-svg { height: 58px; }
+.hanging-drop-3 .rope-curve-svg { height: 44px; }
+
+/* Wooden Scrapbook Peg / Clothespin */
+.wooden-peg {
+  position: relative;
+  width: 12px;
+  height: 22px;
+  background: linear-gradient(135deg, #dfbe9b 0%, #c69d72 45%, #b08558 75%, #8f653a 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(50, 20, 10, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  z-index: 6;
+  margin-top: -3px;
+}
+
+.wooden-peg::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 1px;
+  right: 1px;
+  height: 3px;
+  background: linear-gradient(90deg, #593d25 0%, #8c6742 50%, #593d25 100%);
+  border-radius: 1px;
+}
+
+/* Physical Printed Photograph Frame (Polaroid Style) */
+.hanging-polaroid {
+  background: #ffffff;
+  padding: 0.75rem 0.75rem 1.15rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(40, 20, 30, 0.07);
+  box-shadow: 0 14px 34px rgba(45, 20, 30, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  position: relative;
+  transition: box-shadow 0.35s ease;
+}
+
+.hanging-photo-item:hover .hanging-polaroid {
+  box-shadow: 0 20px 45px rgba(45, 20, 30, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.polaroid-img-box {
+  position: relative;
+  width: 100%;
+  height: 185px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #f7efe8;
+}
+
+/* ==========================================================================
+   PAGE 3: 2-PHOTO ARRANGEMENT PER SCRAPBOOK FRAME (6 PHOTOS TOTAL)
+   ========================================================================== */
+.polaroid-duo-card {
+  width: 100%;
+  max-width: 310px;
+}
+
+.polaroid-duo-cluster {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  margin-bottom: 0.35rem;
+}
+
+.duo-sub-photo {
+  position: absolute;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(45, 20, 30, 0.12);
+  overflow: hidden;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease, z-index 0.2s ease;
+}
+
+.duo-sub-photo:hover {
+  transform: scale(1.12) rotate(0deg) !important;
+  z-index: 15 !important;
+  box-shadow: 0 12px 28px rgba(110, 28, 44, 0.25);
+}
+
+.duo-sub-photo .memory-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Frame 1: Two fanned polaroids (Photo A tilted left, Photo B tilted right slightly overlapping) */
+.duo-frame-1 .duo-photo-a {
+  width: 58%;
+  height: 125px;
+  left: 6px;
+  top: 6px;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.duo-frame-1 .duo-photo-b {
+  width: 58%;
+  height: 125px;
+  right: 6px;
+  top: 24px;
+  transform: rotate(5deg);
+  z-index: 2;
+}
+
+/* Frame 2: One photo slightly higher, one slightly lower with subtle tilt */
+.duo-frame-2 .duo-photo-a {
+  width: 57%;
+  height: 128px;
+  left: 10px;
+  top: 2px;
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+
+.duo-frame-2 .duo-photo-b {
+  width: 57%;
+  height: 124px;
+  right: 8px;
+  top: 28px;
+  transform: rotate(6deg);
+  z-index: 1;
+}
+
+/* Frame 3: Two slightly overlapping polaroids (Photo A lower-left, Photo B upper-right) */
+.duo-frame-3 .duo-photo-a {
+  width: 58%;
+  height: 126px;
+  left: 6px;
+  top: 24px;
+  transform: rotate(4deg);
+  z-index: 1;
+}
+
+.duo-frame-3 .duo-photo-b {
+  width: 57%;
+  height: 126px;
+  right: 8px;
+  top: 4px;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+
+.memory-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-text {
+  padding-top: 0.65rem;
+  text-align: center;
+}
+
+.polaroid-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.polaroid-note {
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+
+/* Independent Gentle Breeze Swaying Animations */
+.hanging-sway-left {
+  animation: photo-breeze-left 10.5s ease-in-out infinite alternate;
+}
+
+.hanging-sway-center {
+  animation: photo-breeze-center 13s ease-in-out infinite alternate 1.4s;
+}
+
+.hanging-sway-right {
+  animation: photo-breeze-right 11.5s ease-in-out infinite alternate 0.7s;
+}
+
+@keyframes photo-breeze-left {
+  0% { transform: rotate(-2.6deg) translateY(0); }
+  50% { transform: rotate(-0.6deg) translateY(2px); }
+  100% { transform: rotate(-3.4deg) translateY(-1px); }
+}
+
+@keyframes photo-breeze-center {
+  0% { transform: rotate(0.8deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(3px); }
+  100% { transform: rotate(1.6deg) translateY(-2px); }
+}
+
+@keyframes photo-breeze-right {
+  0% { transform: rotate(2.6deg) translateY(0); }
+  50% { transform: rotate(0.6deg) translateY(2px); }
+  100% { transform: rotate(3.5deg) translateY(-1px); }
+}
+
+/* ==========================================================================
+   PAGE 4: REFLECTION (WHAT YOU MEAN TO ME)
+   ========================================================================== */
+
+.meaning-cards-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  align-items: stretch;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.meaning-card {
+  background: var(--bg-card);
+  padding: 1.5rem 1.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease;
+}
+
+.meaning-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-medium);
+}
+
+.meaning-card.card-highlight {
+  background: var(--bg-card-highlight);
+  border-color: var(--border-gold);
+}
+
+.card-rotate-left { transform: rotate(-1.5deg); }
+.card-rotate-right { transform: rotate(1.5deg); }
+.card-rotate-straight { transform: rotate(0deg); }
+.card-rotate-left-subtle { transform: rotate(-1deg); }
+.card-rotate-right-subtle { transform: rotate(1deg); }
+
+.card-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  line-height: 0.8;
+  color: var(--color-rose);
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.meaning-text {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin-bottom: 0.8rem;
+}
+
+.meaning-tag {
+  font-family: var(--font-script);
+  font-size: 1.05rem;
+  color: var(--color-wine);
+  display: block;
+}
+
+/* ==========================================================================
+   PAGE 5: THE PROPOSAL
+   ========================================================================== */
+
+.proposal-container {
+  max-width: 820px;
+  text-align: center;
+}
+
+.proposal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.ring-sparkle-icon {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 8px var(--color-gold-bright));
+}
+
+.proposal-lead-in {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  font-weight: 400;
+  color: var(--text-main);
+  margin-bottom: 0.8rem;
+}
+
+.proposal-supporting-lines {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 2rem auto;
+}
+
+.grand-question-box {
+  margin-bottom: 1.4rem;
+}
+
+.grand-question-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-wine-dark);
+  text-shadow: 0 2px 20px rgba(110, 28, 44, 0.15);
+}
+
+.heart-pulse-icon {
+  display: inline-block;
+  color: var(--color-wine);
+  animation: pulse-heart 2s infinite ease-in-out;
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+.gold-accent-underline {
+  width: 110px;
+  height: 2px;
+  background: var(--gold-gradient);
+  margin: 1rem auto 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--color-gold-bright);
+}
+
+.proposal-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.8rem;
+}
+
+.note-heart {
+  color: var(--color-rose);
+}
+
+.choice-toast-banner {
+  min-height: 28px;
+  margin-bottom: 1.2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-wine);
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.choice-toast-banner.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.choice-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  position: relative;
+  min-height: 80px;
+  width: 100%;
+}
+
+.btn-proposal-yes {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: linear-gradient(135deg, #a62a42 0%, #6e1c2c 100%);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 1.15rem 3rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 10px 35px rgba(166, 42, 66, 0.4), 0 0 20px rgba(201, 160, 80, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease;
+  z-index: 10;
+}
+
+.btn-proposal-yes:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 16px 45px rgba(166, 42, 66, 0.6), 0 0 30px rgba(201, 160, 80, 0.35);
+}
+
+.btn-no-wrapper {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.25, 1.4, 0.5, 1);
+  z-index: 5;
+}
+
+.btn-proposal-no {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 1.1rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.btn-proposal-no:hover {
+  background: #fff;
+  color: var(--color-wine);
+  border-color: var(--color-wine);
+}
+
+/* ==========================================================================
+   PAGE 6: FINAL CELEBRATION
+   ========================================================================== */
+
+.celebration-container {
+  max-width: 720px;
+  text-align: center;
+}
+
+.celebration-badge-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.celebration-seal {
+  font-size: 1.3rem;
+}
+
+.celebration-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+  font-weight: 600;
+  color: var(--color-wine);
+  margin-bottom: 0.4rem;
+}
+
+.celebration-subline {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.celebration-gratitude {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.celebration-divider-flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.flourish-line {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+}
+
+.flourish-heart {
+  color: var(--color-wine);
+  font-size: 1.1rem;
+}
+
+.final-toast-card {
+  background: var(--bg-card);
+  padding: 2.4rem 2.2rem 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.final-toast-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 1.4rem;
+}
+
+.final-vows-list {
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1.8rem;
+}
+
+.final-signoff-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.final-heart {
+  font-size: 1.3rem;
+  color: var(--color-wine);
+}
+
+.final-script {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--color-wine);
+}
+
+.celebration-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.btn-ghost-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--color-wine);
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost-action:hover {
+  background: var(--color-wine);
+  color: #fff;
+}
+
+/* ==========================================================================
+   PAGE 5: OUR STORY (RELATIONSHIP SCRAPBOOK SCENERY STREAM)
+   Alternating text ↔ photo compositions with varied botanical & craft attachments
+   ========================================================================== */
+
+.gallery-mode-page.active {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  padding: 0;
+}
+
+.gallery-scrollable-content {
+  min-height: 100vh;
+  padding: 5.5rem 1.5rem 4rem;
+  box-sizing: border-box;
+}
+
+.our-story-container {
+  max-width: 920px;
+}
+
+.gallery-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 1rem 1.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.memory-count-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.memory-hint-badge {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.memory-hint-badge code {
+  background: var(--color-rose-soft);
+  color: var(--color-wine);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   OUR STORY STREAM & SCENE CARDS (NON-IDENTICAL SCRAPBOOK COMPOSITIONS)
+   ========================================================================== */
+
+.memories-story-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  width: 100%;
+}
+
+.memory-story-scene {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.4rem 2.6rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  display: grid;
+  gap: 2.4rem;
+  align-items: center;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease;
+}
+
+.memory-story-scene:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-medium);
+}
+
+.scene-tape-accent {
+  position: absolute;
+  top: -8px;
+  right: 32px;
+  width: 55px;
+  height: 16px;
+  background: rgba(230, 210, 190, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transform: rotate(2deg);
+}
+
+/* Layout 1: Text Left ↔ Photos Right */
+.layout-text-left {
+  grid-template-columns: 1.15fr 0.95fr;
+}
+
+/* Layout 2: Photos Left ↔ Text Right */
+.layout-photos-left {
+  grid-template-columns: 0.95fr 1.15fr;
+}
+
+/* Layout 3: Dedicated Romantic Letter / Scrapbook Entry (0-photo memories) */
+.scene-letter-entry {
+  grid-template-columns: 1fr;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.8rem 3rem 2.4rem;
+  background: var(--bg-card-warm);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-lg);
+}
+
+.scene-botanical-accent {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.botanical-mini-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Text Content Area in Story Scene */
+.scene-text-block {
+  position: relative;
+}
+
+.scene-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.memory-date-pill {
+  display: inline-block;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-wine);
+  background: var(--color-rose-soft);
+  padding: 0.22rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+.memory-chapter-script {
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--color-rose);
+}
+
+.memory-scene-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+
+.scene-letter-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-wine) 0%, rgba(110, 28, 44, 0.12) 80%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.memory-scene-desc {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Visual Block with Scrapbook Structural Installation */
+.scene-visual-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.struct-display-box {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   0-PHOTO LETTER VARIATIONS (BESPOKE CRAFT MOTIFS)
+   ========================================================================== */
+.scene-letter-entry {
+  position: relative;
+  background: var(--bg-card-warm);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 2.8rem 3rem 2.4rem;
+  overflow: hidden;
+}
+
+.scene-waxseal-accent {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.8rem;
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle, #8f293d 0%, #541521 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(84, 21, 33, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fce8ec;
+  font-size: 0.65rem;
+  text-align: center;
+  border: 1px dashed rgba(247, 231, 196, 0.6);
+}
+
+.scene-waxseal-accent .stamp-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+
+.scene-waxseal-accent .stamp-inner span {
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+.scene-stamp-accent {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.8rem;
+  padding: 0.4rem 0.65rem;
+  border: 1.5px dashed var(--color-wine);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  color: var(--color-wine);
+  background: rgba(253, 237, 240, 0.65);
+  transform: rotate(4deg);
+}
+
+.scene-ribbon-accent {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  background: linear-gradient(135deg, #e8b0bd 0%, #c47687 100%);
+  color: #fff;
+  padding: 0.4rem 0.8rem 0.6rem;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(196, 118, 135, 0.35);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   STRUCTURE 1 — CLASSIC HANGING PHOTOS
+   ========================================================================== */
+.struct-1-classic-hanging {
+  width: 100%;
+}
+
+.hanging-twine-bar {
+  position: relative;
+  width: 95%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #be9e8c 8%, #be9e8c 92%, transparent 100%);
+  margin: 0 auto 0.4rem auto;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.twine-knot {
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #a88470;
+  border: 1px solid #7a5c4b;
+}
+
+.knot-left { left: 10%; }
+.knot-center { left: 50%; transform: translateX(-50%); }
+.knot-right { right: 10%; }
+
+.hanging-photos-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.hanging-photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.hanging-drop-1 { margin-top: 0; }
+.hanging-drop-2 { margin-top: 0.8rem; }
+.hanging-drop-3 { margin-top: 0.3rem; }
+
+.hanging-sway-left { transform: rotate(-2.5deg); }
+.hanging-sway-right { transform: rotate(2deg); }
+
+.hanging-sway-left:hover { transform: rotate(0deg) scale(1.03); }
+.hanging-sway-right:hover { transform: rotate(0deg) scale(1.03); }
+
+.attachment-wrap {
+  position: relative;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -6px;
+  z-index: 5;
+}
+
+.attachment-svg {
+  display: block;
+  overflow: visible;
+  width: 100%;
+  height: 38px;
+}
+
+.hanging-drop-2 .attachment-svg { height: 48px; }
+.hanging-drop-3 .attachment-svg { height: 32px; }
+
+.wooden-peg {
+  width: 9px;
+  height: 15px;
+  background: linear-gradient(135deg, #d8bc9d 0%, #b89878 100%);
+  border-radius: 2px;
+  border: 1px solid #8e6c4e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  margin-top: -3px;
+}
+
+.hanging-polaroid {
+  background: #fff;
+  padding: 0.55rem 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.polaroid-img-box {
+  width: 100%;
+  height: 150px;
+  background: #f7e6eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.count-1 .polaroid-img-box {
+  width: 220px;
+  height: 200px;
+}
+
+.count-2 .polaroid-img-box {
+  width: 150px;
+  height: 155px;
+}
+
+.count-3 .polaroid-img-box {
+  width: 110px;
+  height: 130px;
+}
+
+.memory-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.hanging-polaroid:hover .memory-photo-img,
+.branch-polaroid:hover .memory-photo-img,
+.overlap-polaroid-card:hover .memory-photo-img,
+.collage-item:hover .memory-photo-img,
+.washi-photo-card:hover .memory-photo-img,
+.vstrip-polaroid:hover .memory-photo-img,
+.film-single-frame:hover .memory-photo-img,
+.pinboard-polaroid:hover .memory-photo-img,
+.vine-photo-frame:hover .memory-photo-img,
+.cascade-card:hover .memory-photo-img,
+.hero-showcase-card:hover .memory-photo-img,
+.gallery-hanging-polaroid:hover .memory-photo-img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   STRUCTURE 2 — TREE BRANCH HANGING
+   ========================================================================== */
+.struct-2-branch-hanging {
+  width: 100%;
+}
+
+.branch-canopy-svg-wrap {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: -4px;
+}
+
+.tree-branch-svg {
+  width: 100%;
+  height: 44px;
+  overflow: visible;
+  display: block;
+}
+
+.branch-photos-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.branch-photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.branch-drop-1 {
+  margin-top: 0.2rem;
+  transform: rotate(-3deg);
+}
+
+.branch-drop-2 {
+  margin-top: 1.1rem;
+  transform: rotate(2.5deg);
+}
+
+.branch-drop-3 {
+  margin-top: 0.5rem;
+  transform: rotate(-1.5deg);
+}
+
+.branch-twine-line {
+  position: relative;
+  width: 1px;
+  height: 34px;
+  background: #728c70;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.branch-drop-2 .branch-twine-line { height: 46px; }
+.branch-drop-3 .branch-twine-line { height: 28px; }
+
+.branch-leaf-clip {
+  position: absolute;
+  bottom: -6px;
+  font-size: 0.95rem;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.branch-polaroid {
+  background: #fff;
+  padding: 0.55rem 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(114, 140, 112, 0.25);
+  margin-top: 4px;
+}
+
+.branch-img-box {
+  width: 115px;
+  height: 135px;
+  background: #eef4ed;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.count-1 .branch-img-box { width: 210px; height: 190px; }
+.count-2 .branch-img-box { width: 145px; height: 150px; }
+
+/* ==========================================================================
+   STRUCTURE 3 — POLAROID OVERLAP
+   ========================================================================== */
+.struct-3-polaroid-overlap {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.overlap-deck-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 220px;
+}
+
+.overlap-polaroid-card {
+  background: #fff;
+  padding: 0.6rem 0.6rem 0.95rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(45, 25, 32, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: transform 0.35s var(--ease-smooth), z-index 0.2s ease;
+}
+
+.overlap-card-1 {
+  transform: rotate(-7deg) translate(-10px, 0);
+  z-index: 2;
+}
+
+.overlap-card-2 {
+  transform: rotate(5deg) translate(15px, -8px);
+  z-index: 3;
+}
+
+.overlap-card-3 {
+  transform: rotate(-2deg) translate(0px, 12px);
+  z-index: 4;
+}
+
+.overlap-card-4 {
+  transform: rotate(6deg) translate(20px, 10px);
+  z-index: 5;
+}
+
+.overlap-card-5 {
+  transform: rotate(-5deg) translate(-15px, 15px);
+  z-index: 6;
+}
+
+.overlap-polaroid-card:hover {
+  transform: scale(1.08) rotate(0deg);
+  z-index: 10;
+  box-shadow: 0 16px 36px rgba(110, 28, 44, 0.2);
+}
+
+.overlap-img-box {
+  width: 125px;
+  height: 140px;
+  background: #faf0f2;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.count-1 .overlap-img-box { width: 220px; height: 195px; }
+.count-2 .overlap-img-box { width: 155px; height: 160px; }
+
+.overlap-clip-accent {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  font-size: 1.2rem;
+  transform: rotate(-15deg);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.overlap-seal-accent {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, #8f293d 0%, #541521 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fcd3de;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(84, 21, 33, 0.4);
+}
+
+/* ==========================================================================
+   STRUCTURE 4 — SCRAPBOOK COLLAGE
+   ========================================================================== */
+.struct-4-scrapbook-collage {
+  width: 100%;
+}
+
+.collage-paper-mat {
+  background: linear-gradient(135deg, #fffdfa 0%, #fdf8f0 100%);
+  border: 1px dashed rgba(110, 28, 44, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.2rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.collage-postage-stamp {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 1.5px dashed var(--color-wine);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  background: rgba(252, 228, 236, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  color: var(--color-wine);
+  transform: rotate(6deg);
+}
+
+.collage-items-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  padding: 0.8rem 0;
+}
+
+.collage-item {
+  position: relative;
+  background: #fff;
+  padding: 0.45rem 0.45rem 0.65rem;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease;
+}
+
+.collage-card-1 { transform: rotate(-4deg); }
+.collage-card-2 { transform: rotate(3.5deg); }
+.collage-card-3 { transform: rotate(-1.5deg); }
+.collage-card-4 { transform: rotate(5deg); }
+
+.collage-washi-strip {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 45px;
+  height: 14px;
+  background: rgba(232, 176, 189, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.collage-img-frame {
+  width: 110px;
+  height: 120px;
+  background: #f7e6eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .collage-img-frame { width: 220px; height: 180px; }
+.count-2 .collage-img-frame { width: 135px; height: 140px; }
+
+.collage-script-badge {
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  color: var(--color-wine);
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+/* ==========================================================================
+   STRUCTURE 5 — WASHI TAPE PHOTOS
+   ========================================================================== */
+.struct-5-washi-tape {
+  width: 100%;
+}
+
+.washi-cards-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.washi-photo-card {
+  position: relative;
+  background: #fff;
+  padding: 0.55rem 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 22px rgba(45, 25, 32, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.washi-card-1 { transform: rotate(-4.5deg); }
+.washi-card-2 { transform: rotate(3.5deg); }
+.washi-card-3 { transform: rotate(-2deg); }
+.washi-card-4 { transform: rotate(5deg); }
+
+.washi-photo-card:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.washi-tape-accent {
+  position: absolute;
+  width: 55px;
+  height: 18px;
+  z-index: 5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  opacity: 0.85;
+}
+
+.tape-pink { background: #f4c2cc; }
+.tape-gold { background: #ecd49f; }
+.tape-sage { background: #bed2b8; }
+.tape-lavender { background: #dacbe8; }
+
+.tape-top-left {
+  top: -10px;
+  left: -8px;
+  transform: rotate(-18deg);
+}
+
+.tape-top-center {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.tape-top-right {
+  top: -10px;
+  right: -8px;
+  transform: rotate(18deg);
+}
+
+.tape-both-corners {
+  top: -10px;
+  left: -8px;
+  transform: rotate(-15deg);
+}
+
+.washi-img-box {
+  width: 115px;
+  height: 135px;
+  background: #faedf0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .washi-img-box { width: 220px; height: 190px; }
+.count-2 .washi-img-box { width: 145px; height: 155px; }
+
+/* ==========================================================================
+   STRUCTURE 6 — VERTICAL PHOTO STRIP
+   ========================================================================== */
+.struct-6-vertical-strip {
+  width: 100%;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.vstrip-seam-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: repeating-linear-gradient(180deg, var(--color-wine) 0, var(--color-wine) 6px, transparent 6px, transparent 12px);
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.vstrip-items-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.vstrip-item {
+  position: relative;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.vstrip-item.node-left {
+  margin-right: 1.2rem;
+  transform: rotate(-3.5deg);
+}
+
+.vstrip-item.node-right {
+  margin-left: 1.2rem;
+  transform: rotate(3deg);
+}
+
+.vstrip-item:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.vstrip-eyelet {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e5be6b 0%, #b88f38 100%);
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.vstrip-polaroid {
+  background: #fff;
+  padding: 0.5rem 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid var(--border-subtle);
+}
+
+.vstrip-img-box {
+  width: 125px;
+  height: 125px;
+  background: #faf3f5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.count-1 .vstrip-img-box { width: 210px; height: 180px; }
+
+/* ==========================================================================
+   STRUCTURE 7 — ROMANTIC FILM STRIP
+   ========================================================================== */
+.struct-7-film-strip {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.film-strip-ribbon {
+  background: linear-gradient(135deg, #2b2226 0%, #3d2c34 100%);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  box-shadow: 0 14px 34px rgba(35, 18, 26, 0.3);
+  position: relative;
+  border: 1px solid rgba(223, 184, 103, 0.3);
+  max-width: 100%;
+}
+
+.film-sprockets-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.film-sprockets-row span {
+  width: 10px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1.5px;
+  display: block;
+}
+
+.film-frames-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 0.4rem 0.2rem;
+}
+
+.film-single-frame {
+  background: #1d1519;
+  border-radius: 4px;
+  padding: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.film-frame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.58rem;
+  color: #dfb867;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+  padding: 0 0.1rem;
+}
+
+.film-photo-window {
+  width: 100px;
+  height: 120px;
+  background: #000;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .film-photo-window { width: 190px; height: 165px; }
+.count-2 .film-photo-window { width: 125px; height: 135px; }
+
+/* ==========================================================================
+   STRUCTURE 8 — POLAROID PINBOARD
+   ========================================================================== */
+.struct-8-pinboard {
+  width: 100%;
+}
+
+.pinboard-card-mat {
+  background: linear-gradient(135deg, #faf5ef 0%, #f5ece1 100%);
+  border: 1px solid rgba(190, 158, 140, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1.3rem 1.1rem 1.5rem;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(45, 25, 32, 0.08);
+  position: relative;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.pinboard-memo-note {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--color-wine);
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+.pinboard-cluster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pinboard-photo-wrap {
+  position: relative;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.pin-card-1 { transform: rotate(-5deg); }
+.pin-card-2 { transform: rotate(4deg); }
+.pin-card-3 { transform: rotate(-1.5deg); }
+
+.pinboard-photo-wrap:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.pushpin-3d {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+}
+
+.pushpin-3d::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.pin-gold { background: radial-gradient(circle, #f0cf7e 0%, #ba8e3b 100%); }
+.pin-rose { background: radial-gradient(circle, #f7b5c4 0%, #b84b64 100%); }
+.pin-pearl { background: radial-gradient(circle, #ffffff 0%, #d8d3d5 100%); }
+
+.pinboard-polaroid {
+  background: #fff;
+  padding: 0.45rem 0.45rem 0.75rem;
+  border-radius: 3px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09);
+}
+
+.pinboard-img-box {
+  width: 110px;
+  height: 125px;
+  background: #faf0f2;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .pinboard-img-box { width: 210px; height: 180px; }
+.count-2 .pinboard-img-box { width: 135px; height: 145px; }
+
+/* ==========================================================================
+   STRUCTURE 9 — FLOWER / VINE FRAME
+   ========================================================================== */
+.struct-9-vine-frame {
+  width: 100%;
+}
+
+.vine-garland-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
+
+.vine-garland-svg {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.garland-tl { top: -6px; left: -6px; }
+.garland-br { bottom: -6px; right: -6px; }
+
+.vine-photos-cluster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.vine-photo-item {
+  position: relative;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.vine-card-1 { transform: rotate(-3deg); }
+.vine-card-2 { transform: rotate(3deg); }
+.vine-card-3 { transform: rotate(-1deg); }
+
+.vine-photo-frame {
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(126, 148, 123, 0.2);
+  width: 115px;
+  height: 130px;
+  overflow: hidden;
+}
+
+.count-1 .vine-photo-frame { width: 210px; height: 185px; }
+.count-2 .vine-photo-frame { width: 140px; height: 150px; }
+
+/* ==========================================================================
+   STRUCTURE 10 — DIAGONAL CASCADE
+   ========================================================================== */
+.struct-10-diagonal-cascade {
+  width: 100%;
+  position: relative;
+}
+
+.cascade-ribbon-bg {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 80%;
+  height: 70%;
+  background: linear-gradient(135deg, rgba(252, 228, 236, 0.45) 0%, rgba(247, 231, 196, 0.3) 100%);
+  border-radius: 20px;
+  transform: rotate(-3deg);
+  z-index: 1;
+}
+
+.cascade-steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+  padding: 0.5rem 0;
+}
+
+.cascade-item {
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.cascade-step-1 { transform: translateY(-12px) rotate(-6deg); }
+.cascade-step-2 { transform: translateY(0) rotate(2deg); }
+.cascade-step-3 { transform: translateY(12px) rotate(-2deg); }
+
+.cascade-card {
+  background: #fff;
+  padding: 0.45rem 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 24px rgba(45, 25, 32, 0.12);
+  border: 1px solid var(--border-subtle);
+}
+
+.cascade-img-box {
+  width: 105px;
+  height: 125px;
+  background: #faedf0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .cascade-img-box { width: 210px; height: 185px; }
+.count-2 .cascade-img-box { width: 140px; height: 150px; }
+
+/* ==========================================================================
+   STRUCTURE 11 — CENTER HERO PHOTO + SMALL PHOTOS
+   ========================================================================== */
+.struct-11-center-hero {
+  width: 100%;
+}
+
+.hero-showcase-card {
+  position: relative;
+  background: #fff;
+  padding: 0.8rem 0.8rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-gold);
+  box-shadow: 0 14px 35px rgba(110, 28, 44, 0.15);
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.hero-trio-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-main-card {
+  position: relative;
+  background: #fff;
+  padding: 0.65rem 0.65rem 0.95rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-gold);
+  box-shadow: 0 14px 35px rgba(110, 28, 44, 0.18);
+  z-index: 5;
+}
+
+.hero-main-card .hero-img-box {
+  width: 145px;
+  height: 160px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #faedf0;
+}
+
+.hero-flank-card {
+  position: relative;
+  background: #fff;
+  padding: 0.45rem 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease;
+}
+
+.hero-flank-card.flank-left {
+  transform: rotate(-9deg) translateX(12px);
+  z-index: 2;
+}
+
+.hero-flank-card.flank-right {
+  transform: rotate(9deg) translateX(-12px);
+  z-index: 3;
+}
+
+.flank-img-box {
+  width: 90px;
+  height: 110px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #faf3f5;
+}
+
+.hero-filigree {
+  position: absolute;
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  text-shadow: 0 0 4px rgba(201, 160, 80, 0.5);
+}
+
+.hero-filigree.top-left { top: 4px; left: 6px; }
+.hero-filigree.top-right { top: 4px; right: 6px; }
+.hero-filigree.bottom-left { bottom: 6px; left: 6px; }
+.hero-filigree.bottom-right { bottom: 6px; right: 6px; }
+
+.hero-caption-pill {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--color-wine);
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.hero-multi-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.hero-main-prominent {
+  max-width: 220px;
+}
+
+.hero-main-prominent .hero-img-box {
+  width: 170px;
+  height: 180px;
+}
+
+.hero-mosaic-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.hero-mosaic-card {
+  position: relative;
+  background: #fff;
+  padding: 0.4rem 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-mosaic-card:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   STRUCTURE 12 — HANGING MINI GALLERY
+   ========================================================================== */
+.struct-12-mini-gallery {
+  width: 100%;
+}
+
+.mini-gallery-drops-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.mini-gallery-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.gallery-cord-1 { transform: rotate(-3.5deg); }
+.gallery-cord-2 { transform: rotate(2deg); margin-top: 0.8rem; }
+.gallery-cord-3 { transform: rotate(-1.5deg); margin-top: 0.3rem; }
+
+.gallery-ceiling-anchor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -4px;
+}
+
+.ceiling-pin {
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  text-shadow: 0 0 5px rgba(201, 160, 80, 0.6);
+}
+
+.gallery-drop-cord {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(180deg, #dfb867 0%, #be9e8c 100%);
+}
+
+.gallery-cord-2 .gallery-drop-cord { height: 44px; }
+.gallery-cord-3 .gallery-drop-cord { height: 26px; }
+
+.gallery-binder-clip {
+  width: 12px;
+  height: 7px;
+  background: #ecd49f;
+  border: 1px solid #ba8e3b;
+  border-radius: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-hanging-polaroid {
+  background: #fff;
+  padding: 0.5rem 0.5rem 0.8rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.gallery-img-box {
+  width: 110px;
+  height: 130px;
+  background: #faf0f2;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.count-1 .gallery-img-box { width: 210px; height: 185px; }
+.count-2 .gallery-img-box { width: 140px; height: 150px; }
+
+/* ==========================================================================
+   STORY STREAM CLIMAX TRANSITION TO PROPOSAL
+   ========================================================================== */
+.story-stream-continue-block {
+  padding: 3rem 1.5rem 1rem;
+  text-align: center;
+}
+
+.story-lead-to-proposal {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-style: italic;
+  color: var(--color-wine);
+  margin-bottom: 1.8rem;
+}
+
+/* Editorial Footer inside Our Story view */
+.editorial-footer {
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 3rem;
+}
+
+.footer-monogram {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-wine);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.footer-note {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.footer-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   RESPONSIVE COMPACT MEDIA QUERIES (Mobile & Tablet Fitting)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .meaning-cards-cluster {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .polaroid-img-box {
+    height: 165px;
+  }
+}
+
+@media (max-width: 900px) {
+  .story-page {
+    padding: 3.8rem 1rem 1.5rem;
+  }
+
+  .opening-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .eyebrow-wrapper {
+    justify-content: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .opening-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .opening-subtitle {
+    font-size: 1.1rem;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .preview-polaroid {
+    display: none;
+  }
+
+  .letter-sheet {
+    padding: 2rem 1.4rem 1.5rem;
+  }
+
+  .letter-para {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    margin-bottom: 0.6rem;
+  }
+
+  .letter-para-lead {
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Page 3 Hanging Installation on Mobile */
+  .hanging-installation-container {
+    max-width: 100%;
+  }
+
+  .hanging-photos-row.count-3 {
+    gap: 0.6rem;
+  }
+
+  .hanging-photos-row.count-3 .hanging-photo-item {
+    max-width: 32%;
+  }
+
+  .polaroid-img-box {
+    height: 120px;
+  }
+
+  .polaroid-duo-cluster {
+    height: 115px;
+  }
+
+  .duo-sub-photo {
+    padding: 2px;
+  }
+
+  .duo-frame-1 .duo-photo-a,
+  .duo-frame-1 .duo-photo-b,
+  .duo-frame-2 .duo-photo-a,
+  .duo-frame-2 .duo-photo-b,
+  .duo-frame-3 .duo-photo-a,
+  .duo-frame-3 .duo-photo-b {
+    width: 60%;
+    height: 85px;
+  }
+
+  .duo-frame-1 .duo-photo-a { left: 2px; top: 4px; }
+  .duo-frame-1 .duo-photo-b { right: 2px; top: 18px; }
+
+  .duo-frame-2 .duo-photo-a { left: 4px; top: 2px; }
+  .duo-frame-2 .duo-photo-b { right: 2px; top: 20px; }
+
+  .duo-frame-3 .duo-photo-a { left: 2px; top: 20px; }
+  .duo-frame-3 .duo-photo-b { right: 2px; top: 4px; }
+
+  .polaroid-title {
+    font-size: 0.82rem;
+  }
+
+  .polaroid-note {
+    font-size: 0.88rem;
+    line-height: 1.15;
+  }
+
+  .hanging-polaroid {
+    padding: 0.45rem 0.45rem 0.65rem;
+  }
+
+  .hanging-drop-1 .rope-curve-svg { height: 26px; }
+  .hanging-drop-2 .rope-curve-svg { height: 38px; }
+  .hanging-drop-3 .rope-curve-svg { height: 30px; }
+
+  .wooden-peg {
+    width: 10px;
+    height: 17px;
+  }
+
+  .meaning-cards-cluster {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .meaning-card:nth-child(n+4) {
+    display: none;
+  }
+
+  .meaning-card {
+    padding: 1rem 1.1rem;
+  }
+
+  .meaning-text {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .choice-actions-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Romantic Garden Frame Mobile Scaling */
+  .side-waves-svg {
+    width: 100px;
+    max-width: 18vw;
+    opacity: 0.55;
+  }
+
+  .cluster-top-left,
+  .cluster-top-right {
+    width: 120px;
+    max-width: 28vw;
+  }
+
+  .cluster-mid-left,
+  .cluster-mid-right {
+    display: none;
+  }
+
+  .cluster-bottom-left,
+  .cluster-bottom-right {
+    width: 110px;
+    max-width: 25vw;
+  }
+
+  /* Our Story Stream Mobile */
+  .memories-story-stream {
+    gap: 2.2rem;
+  }
+
+  .memory-story-scene {
+    grid-template-columns: 1fr !important;
+    padding: 1.8rem 1.4rem;
+    gap: 1.5rem;
+  }
+
+  .memory-scene-title {
+    font-size: 1.35rem;
+  }
+
+  .memory-scene-desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  /* 12-Structure Mobile Layout Adaptations */
+  .hanging-photos-row,
+  .branch-photos-row,
+  .washi-cards-gallery,
+  .collage-items-cluster,
+  .film-frames-strip,
+  .pinboard-cluster,
+  .vine-photos-cluster,
+  .cascade-steps-container,
+  .mini-gallery-drops-row {
+    gap: 0.6rem;
+  }
+
+  .overlap-img-box,
+  .branch-img-box,
+  .collage-img-frame,
+  .washi-img-box,
+  .vstrip-img-box,
+  .pinboard-img-box,
+  .vine-photo-frame,
+  .cascade-img-box,
+  .gallery-img-box {
+    width: 95px;
+    height: 110px;
+  }
+
+  .hero-main-card .hero-img-box {
+    width: 120px;
+    height: 135px;
+  }
+
+  .flank-img-box {
+    width: 75px;
+    height: 90px;
+  }
+
+  .film-photo-window {
+    width: 85px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-waves-svg {
+    width: 70px;
+    max-width: 15vw;
+    opacity: 0.45;
+  }
+
+  .cluster-top-left,
+  .cluster-top-right {
+    width: 90px;
+  }
+
+  .cluster-bottom-left,
+  .cluster-bottom-right {
+    width: 85px;
+  }
+
+  .hanging-photos-row,
+  .branch-photos-row,
+  .washi-cards-gallery,
+  .collage-items-cluster,
+  .pinboard-cluster,
+  .vine-photos-cluster,
+  .cascade-steps-container,
+  .mini-gallery-drops-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .overlap-img-box,
+  .branch-img-box,
+  .collage-img-frame,
+  .washi-img-box,
+  .vstrip-img-box,
+  .pinboard-img-box,
+  .vine-photo-frame,
+  .cascade-img-box,
+  .gallery-img-box {
+    width: 85px;
+    height: 100px;
+  }
+
+  .film-photo-window {
+    width: 70px;
+    height: 85px;
+  }
+}

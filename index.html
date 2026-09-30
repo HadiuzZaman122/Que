@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>A Story of Us | From My Heart</title>
+  <meta name="description"
+    content="An intimate romantic storybook, personal apology, memories, proposal, and permanent relationship memory gallery.">
+  <meta name="theme-color" content="#fdf5f6">
+
+  <!-- Editorial Typography & Handwritten Accents -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="scrapbook-page proposal-mode">
+
+  <!-- Subtle Film Grain Filter -->
+  <svg class="svg-filters" aria-hidden="true">
+    <filter id="paper-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.035 0" />
+    </filter>
+  </svg>
+
+  <!-- High-Density Atmosphere Canvas (Floating Hearts, Flowers, Petals, Leaves & Sparkles) -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================================================================== -->
+  <!-- ROMANTIC GARDEN FRAME & PASTEL SIDE WAVES (NON-BLOCKING BACKGROUND)-->
+  <!-- ================================================================== -->
+  <div class="romantic-garden-frame" aria-hidden="true">
+
+    <!-- Left Vertical Flowing Waves -->
+    <svg class="side-waves-svg wave-left" viewBox="0 0 320 1200" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="waveGradL1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fce4ec" stop-opacity="0.55" />
+          <stop offset="50%" stop-color="#fbe0e6" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#fdf2ed" stop-opacity="0.25" />
+        </linearGradient>
+        <linearGradient id="waveGradL2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#eadcf5" stop-opacity="0.45" />
+          <stop offset="60%" stop-color="#f7e1d7" stop-opacity="0.35" />
+          <stop offset="100%" stop-color="#e8f2e6" stop-opacity="0.2" />
+        </linearGradient>
+        <linearGradient id="waveGradL3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fde8e4" stop-opacity="0.5" />
+          <stop offset="50%" stop-color="#fdf5f6" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#e2edd9" stop-opacity="0.25" />
+        </linearGradient>
+      </defs>
+      <!-- Layered Organic Flowing Waves Left -->
+      <path d="M0,0 C120,150 240,100 180,320 C120,540 280,680 190,880 C110,1040 220,1120 0,1200 Z"
+        fill="url(#waveGradL1)" />
+      <path d="M0,0 C80,180 190,260 130,480 C70,700 210,820 120,1000 C60,1120 110,1180 0,1200 Z"
+        fill="url(#waveGradL2)" />
+      <path d="M0,150 C60,280 130,380 90,560 C50,740 140,880 70,1060 L0,1200 Z" fill="url(#waveGradL3)" />
+    </svg>
+
+    <!-- Right Vertical Flowing Waves -->
+    <svg class="side-waves-svg wave-right" viewBox="0 0 320 1200" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="waveGradR1" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#fdf2ed" stop-opacity="0.55" />
+          <stop offset="50%" stop-color="#fbe0ea" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#faeed9" stop-opacity="0.25" />
+        </linearGradient>
+        <linearGradient id="waveGradR2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#e8f2e6" stop-opacity="0.45" />
+          <stop offset="50%" stop-color="#fce4ec" stop-opacity="0.35" />
+          <stop offset="100%" stop-color="#eadcf5" stop-opacity="0.2" />
+        </linearGradient>
+        <linearGradient id="waveGradR3" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#faebd7" stop-opacity="0.5" />
+          <stop offset="60%" stop-color="#fdf2ed" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#fcedf0" stop-opacity="0.25" />
+        </linearGradient>
+      </defs>
+      <!-- Layered Organic Flowing Waves Right -->
+      <path d="M320,0 C200,160 80,120 140,340 C200,560 40,700 130,900 C210,1060 100,1140 320,1200 Z"
+        fill="url(#waveGradR1)" />
+      <path d="M320,0 C240,190 130,280 190,500 C250,720 110,840 200,1020 C260,1140 210,1190 320,1200 Z"
+        fill="url(#waveGradR2)" />
+      <path d="M320,160 C260,290 190,400 230,580 C270,760 180,900 250,1080 L320,1200 Z" fill="url(#waveGradR3)" />
+    </svg>
+
+    <!-- Top-Left Botanical Composition (Branch, Leaves, Roses) -->
+    <div class="botanical-cluster cluster-top-left">
+      <svg viewBox="0 0 280 280" class="botanical-svg branch-tl">
+        <!-- Main Branch Stem -->
+        <path d="M-10,-10 Q90,60 140,130 Q170,180 210,230" fill="none" stroke="#7e947b" stroke-width="2.2"
+          stroke-linecap="round" opacity="0.75" />
+        <path d="M60,40 Q110,30 160,50" fill="none" stroke="#7e947b" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.65" />
+        <path d="M120,105 Q170,120 200,160" fill="none" stroke="#7e947b" stroke-width="1.5" stroke-linecap="round"
+          opacity="0.65" />
+
+        <!-- Sage Leaves -->
+        <path d="M50,30 Q65,10 80,30 Q65,50 50,30 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M100,25 Q120,5 135,25 Q120,45 100,25 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M150,45 Q175,30 185,50 Q165,70 150,45 Z" fill="#889c7c" opacity="0.8" />
+
+        <path d="M90,75 Q115,65 125,85 Q105,105 90,75 Z" fill="#a3b899" opacity="0.8" />
+        <path d="M135,95 Q160,85 170,105 Q150,125 135,95 Z" fill="#9db89f" opacity="0.85" />
+        <path d="M170,115 Q195,110 205,130 Q185,150 170,115 Z" fill="#b5cca8" opacity="0.8" />
+
+        <path d="M165,160 Q190,160 195,180 Q175,195 165,160 Z" fill="#889c7c" opacity="0.75" />
+        <path d="M195,210 Q220,215 220,235 Q200,245 195,210 Z" fill="#9db89f" opacity="0.8" />
+
+        <!-- Pastel Blossoms / Roses -->
+        <!-- Rose 1 -->
+        <g transform="translate(130, 45) scale(0.9)">
+          <circle cx="0" cy="0" r="14" fill="#fcd3de" opacity="0.9" />
+          <circle cx="-4" cy="-3" r="10" fill="#f497aa" opacity="0.75" />
+          <circle cx="3" cy="2" r="7" fill="#e8b0bd" opacity="0.8" />
+          <circle cx="0" cy="0" r="4" fill="#dfb867" opacity="0.9" />
+        </g>
+        <!-- Rose 2 -->
+        <g transform="translate(180, 110) scale(1.15)">
+          <circle cx="0" cy="0" r="16" fill="#fde2e4" opacity="0.9" />
+          <circle cx="-5" cy="-4" r="12" fill="#f497aa" opacity="0.8" />
+          <circle cx="4" cy="3" r="8" fill="#e8b0bd" opacity="0.85" />
+          <circle cx="0" cy="0" r="4.5" fill="#e5be6b" opacity="0.95" />
+        </g>
+        <!-- Rose 3 Small -->
+        <g transform="translate(215, 185) scale(0.75)">
+          <circle cx="0" cy="0" r="12" fill="#fce4ec" opacity="0.85" />
+          <circle cx="-3" cy="-2" r="8" fill="#f497aa" opacity="0.75" />
+          <circle cx="0" cy="0" r="3" fill="#dfb867" opacity="0.9" />
+        </g>
+        <!-- Floating Petals -->
+        <path d="M110,140 Q125,130 135,145 Q120,160 110,140 Z" fill="#fcd3de" opacity="0.75"
+          transform="rotate(15, 120, 145)" />
+        <path d="M160,200 Q175,190 185,205 Q170,220 160,200 Z" fill="#fde2e4" opacity="0.7"
+          transform="rotate(-25, 170, 205)" />
+      </svg>
+    </div>
+
+    <!-- Top-Right Botanical Composition (Flowing Vine, Lavender & Rose) -->
+    <div class="botanical-cluster cluster-top-right">
+      <svg viewBox="0 0 280 280" class="botanical-svg branch-tr">
+        <!-- Main Vine Stem -->
+        <path d="M290,-10 Q190,60 140,130 Q110,180 70,230" fill="none" stroke="#7e947b" stroke-width="2.2"
+          stroke-linecap="round" opacity="0.75" />
+        <path d="M220,40 Q170,30 120,50" fill="none" stroke="#7e947b" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.65" />
+        <path d="M160,105 Q110,120 80,160" fill="none" stroke="#7e947b" stroke-width="1.5" stroke-linecap="round"
+          opacity="0.65" />
+
+        <!-- Mint/Sage Leaves -->
+        <path d="M230,30 Q215,10 200,30 Q215,50 230,30 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M180,25 Q160,5 145,25 Q160,45 180,25 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M130,45 Q105,30 95,50 Q115,70 130,45 Z" fill="#889c7c" opacity="0.8" />
+
+        <path d="M190,75 Q165,65 155,85 Q175,105 190,75 Z" fill="#a3b899" opacity="0.8" />
+        <path d="M145,95 Q120,85 110,105 Q130,125 145,95 Z" fill="#9db89f" opacity="0.85" />
+        <path d="M110,115 Q85,110 75,130 Q95,150 110,115 Z" fill="#b5cca8" opacity="0.8" />
+
+        <path d="M115,160 Q90,160 85,180 Q105,195 115,160 Z" fill="#889c7c" opacity="0.75" />
+        <path d="M85,210 Q60,215 60,235 Q80,245 85,210 Z" fill="#9db89f" opacity="0.8" />
+
+        <!-- Lavender & Peach Blossom Cluster -->
+        <g transform="translate(150, 45) scale(0.9)">
+          <circle cx="0" cy="0" r="14" fill="#e2d4f0" opacity="0.9" />
+          <circle cx="4" cy="-3" r="10" fill="#c8b1e4" opacity="0.75" />
+          <circle cx="-3" cy="2" r="7" fill="#fcd3de" opacity="0.8" />
+          <circle cx="0" cy="0" r="4" fill="#dfb867" opacity="0.9" />
+        </g>
+        <g transform="translate(100, 110) scale(1.1)">
+          <circle cx="0" cy="0" r="15" fill="#fae1dd" opacity="0.9" />
+          <circle cx="5" cy="-4" r="11" fill="#f7b297" opacity="0.8" />
+          <circle cx="-4" cy="3" r="7.5" fill="#f497aa" opacity="0.85" />
+          <circle cx="0" cy="0" r="4.5" fill="#e5be6b" opacity="0.95" />
+        </g>
+        <g transform="translate(65, 185) scale(0.75)">
+          <circle cx="0" cy="0" r="12" fill="#eadcf5" opacity="0.85" />
+          <circle cx="3" cy="-2" r="8" fill="#c8b1e4" opacity="0.75" />
+          <circle cx="0" cy="0" r="3" fill="#dfb867" opacity="0.9" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Mid-Left Margin Botanical Spray -->
+    <div class="botanical-cluster cluster-mid-left">
+      <svg viewBox="0 0 160 220" class="botanical-svg branch-ml">
+        <path d="M-10,110 Q50,90 90,50 Q120,20 140,-10" fill="none" stroke="#7e947b" stroke-width="1.8"
+          stroke-linecap="round" opacity="0.65" />
+        <path d="M30,95 Q70,120 110,140 Q130,160 150,190" fill="none" stroke="#7e947b" stroke-width="1.6"
+          stroke-linecap="round" opacity="0.6" />
+
+        <path d="M60,65 Q80,45 100,60 Q85,85 60,65 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M100,30 Q120,10 135,25 Q120,50 100,30 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M70,115 Q95,100 110,120 Q90,140 70,115 Z" fill="#889c7c" opacity="0.75" />
+        <path d="M110,145 Q135,135 145,155 Q125,175 110,145 Z" fill="#9db89f" opacity="0.8" />
+
+        <g transform="translate(85, 80) scale(0.85)">
+          <circle cx="0" cy="0" r="13" fill="#fcd3de" opacity="0.85" />
+          <circle cx="-3" cy="-2" r="9" fill="#f497aa" opacity="0.75" />
+          <circle cx="0" cy="0" r="3.5" fill="#dfb867" opacity="0.9" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Mid-Right Margin Botanical Spray -->
+    <div class="botanical-cluster cluster-mid-right">
+      <svg viewBox="0 0 160 220" class="botanical-svg branch-mr">
+        <path d="M170,110 Q110,90 70,50 Q40,20 20,-10" fill="none" stroke="#7e947b" stroke-width="1.8"
+          stroke-linecap="round" opacity="0.65" />
+        <path d="M130,95 Q90,120 50,140 Q30,160 10,190" fill="none" stroke="#7e947b" stroke-width="1.6"
+          stroke-linecap="round" opacity="0.6" />
+
+        <path d="M100,65 Q80,45 60,60 Q75,85 100,65 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M60,30 Q40,10 25,25 Q40,50 60,30 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M90,115 Q65,100 50,120 Q70,140 90,115 Z" fill="#889c7c" opacity="0.75" />
+        <path d="M50,145 Q25,135 15,155 Q35,175 50,145 Z" fill="#a3b899" opacity="0.8" />
+
+        <g transform="translate(75, 80) scale(0.85)">
+          <circle cx="0" cy="0" r="13" fill="#fae1dd" opacity="0.85" />
+          <circle cx="3" cy="-2" r="9" fill="#f7b297" opacity="0.75" />
+          <circle cx="0" cy="0" r="3.5" fill="#dfb867" opacity="0.9" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bottom-Left Botanical Flourish -->
+    <div class="botanical-cluster cluster-bottom-left">
+      <svg viewBox="0 0 240 240" class="botanical-svg branch-bl">
+        <path d="M-10,250 Q60,180 120,130 Q170,80 220,40" fill="none" stroke="#7e947b" stroke-width="2"
+          stroke-linecap="round" opacity="0.7" />
+        <path d="M50,200 Q100,190 140,160" fill="none" stroke="#7e947b" stroke-width="1.5" stroke-linecap="round"
+          opacity="0.6" />
+
+        <path d="M60,180 Q80,160 100,175 Q85,200 60,180 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M110,140 Q135,125 145,145 Q125,165 110,140 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M150,100 Q175,85 185,105 Q165,125 150,100 Z" fill="#889c7c" opacity="0.75" />
+
+        <g transform="translate(130, 140) scale(0.95)">
+          <circle cx="0" cy="0" r="14" fill="#fcd3de" opacity="0.85" />
+          <circle cx="-4" cy="-3" r="10" fill="#f497aa" opacity="0.75" />
+          <circle cx="0" cy="0" r="4" fill="#dfb867" opacity="0.9" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bottom-Right Botanical Flourish -->
+    <div class="botanical-cluster cluster-bottom-right">
+      <svg viewBox="0 0 240 240" class="botanical-svg branch-br">
+        <path d="M250,250 Q180,180 120,130 Q70,80 20,40" fill="none" stroke="#7e947b" stroke-width="2"
+          stroke-linecap="round" opacity="0.7" />
+        <path d="M190,200 Q140,190 100,160" fill="none" stroke="#7e947b" stroke-width="1.5" stroke-linecap="round"
+          opacity="0.6" />
+
+        <path d="M180,180 Q160,160 140,175 Q155,200 180,180 Z" fill="#b5cca8" opacity="0.85" />
+        <path d="M130,140 Q105,125 95,145 Q115,165 130,140 Z" fill="#9db89f" opacity="0.8" />
+        <path d="M90,100 Q65,85 55,105 Q75,125 90,100 Z" fill="#889c7c" opacity="0.75" />
+
+        <g transform="translate(110, 140) scale(0.95)">
+          <circle cx="0" cy="0" r="14" fill="#fae1dd" opacity="0.85" />
+          <circle cx="4" cy="-3" r="10" fill="#f7b297" opacity="0.75" />
+          <circle cx="0" cy="0" r="4" fill="#dfb867" opacity="0.9" />
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Minimal Sticky Header Note -->
+  <header class="editorial-nav" id="editorial-nav">
+    <div class="nav-left">
+      <span class="nav-monogram">M &amp; H</span>
+      <span class="nav-sep">/</span>
+      <span class="nav-title">A Story Made For You</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-chapter" id="nav-chapter-text">PROLOGUE</span>
+    </div>
+  </header>
+
+  <!-- Side Page Dot Indicator (For Direct Slide Navigation) -->
+  <nav class="side-page-nav" id="side-page-nav" aria-label="Storybook page navigation">
+    <button class="page-dot active" data-page-idx="1" title="Page 1: Prologue" aria-label="Page 1: Prologue">
+      <span class="dot-label">01 / Prologue</span>
+    </button>
+    <button class="page-dot" data-page-idx="2" title="Page 2: The Apology" aria-label="Page 2: The Apology">
+      <span class="dot-label">02 / The Apology</span>
+    </button>
+    <button class="page-dot" data-page-idx="3" title="Page 3: Moments" aria-label="Page 3: Moments">
+      <span class="dot-label">03 / Moments</span>
+    </button>
+    <button class="page-dot" data-page-idx="4" title="Page 4: Reflection" aria-label="Page 4: Reflection">
+      <span class="dot-label">04 / Reflection</span>
+    </button>
+    <button class="page-dot" data-page-idx="5" title="Page 5: Our Story" aria-label="Page 5: Our Story">
+      <span class="dot-label">05 / Our Story</span>
+    </button>
+    <button class="page-dot" data-page-idx="6" title="Page 6: The Proposal" aria-label="Page 6: The Proposal">
+      <span class="dot-label">06 / The Proposal</span>
+    </button>
+    <button class="page-dot" data-page-idx="7" title="Page 7: Celebration" aria-label="Page 7: Celebration"
+      id="dot-celebration">
+      <span class="dot-label">07 / Celebration</span>
+    </button>
+  </nav>
+
+  <!-- ================================================================== -->
+  <!-- ROMANTIC FLOATING "OUR STORY" QUICK NAVIGATION MENU               -->
+  <!-- ================================================================== -->
+  <aside class="journey-nav-widget" id="journey-nav-widget">
+
+    <!-- Floating Trigger Button -->
+    <button class="journey-trigger-btn" id="journey-trigger-btn" aria-label="Open navigation menu" aria-expanded="false"
+      title="Dive In Menu">
+      <span class="journey-btn-icon" aria-hidden="true">✦</span>
+      <span class="journey-btn-label">Dive In</span>
+    </button>
+
+    <!-- Romantic Popover Menu -->
+    <div class="journey-popover-menu" id="journey-popover-menu" role="dialog" aria-label="Our Story Navigation"
+      aria-hidden="true">
+      <div class="popover-header">
+        <div class="popover-title-group">
+          <span class="popover-tag">STORYBOOK CHAPTERS</span>
+          <h4 class="popover-title">Our Story</h4>
+        </div>
+        <button class="popover-close-btn" id="journey-close-btn" aria-label="Close navigation menu">✕</button>
+      </div>
+
+      <div class="popover-rule" aria-hidden="true"></div>
+
+      <nav class="journey-menu-list">
+        <button class="journey-menu-item" data-jump-page="1">
+          <span class="item-num">01</span>
+          <div class="item-info">
+            <span class="item-name">Introduction</span>
+            <span class="item-desc">A little something from my heart</span>
+          </div>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="2">
+          <span class="item-num">02</span>
+          <div class="item-info">
+            <span class="item-name">The Apology</span>
+            <span class="item-desc">From me, honestly</span>
+          </div>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="3">
+          <span class="item-num">03</span>
+          <div class="item-info">
+            <span class="item-name">Memories &amp; Scrapbook</span>
+            <span class="item-desc">Pages of our scrapbook</span>
+          </div>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="4">
+          <span class="item-num">04</span>
+          <div class="item-info">
+            <span class="item-name">Reflection</span>
+            <span class="item-desc">Things I don't always say</span>
+          </div>
+        </button>
+
+        <!-- Featured Memories Vault Item (Specially highlighted for quick memory check!) -->
+        <button class="journey-menu-item item-featured" data-jump-page="5">
+          <span class="item-num">05</span>
+          <div class="item-info">
+            <div class="item-name-row">
+              <span class="item-name">Memory Vault</span>
+              <span class="item-badge">✨ All Memories</span>
+            </div>
+            <span class="item-desc">All our milestones &amp; moments</span>
+          </div>
+          <span class="item-arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="6">
+          <span class="item-num">06</span>
+          <div class="item-info">
+            <span class="item-name">The Proposal</span>
+            <span class="item-desc">Will you be mine? 💍</span>
+          </div>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="7">
+          <span class="item-num">07</span>
+          <div class="item-info">
+            <span class="item-name">Celebration</span>
+            <span class="item-desc">She said yes ❤️</span>
+          </div>
+        </button>
+      </nav>
+
+      <div class="popover-footer">
+        <span class="popover-heart-icon">❦</span>
+        <span class="popover-footer-note">A permanent archive of us</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ================================================================== -->
+  <!-- MAIN APP CONTAINER (FIXED 100VW x 100VH SPA SLIDE SYSTEM)           -->
+  <!-- ================================================================== -->
+  <main class="story-app-container" id="story-app">
+
+    <!-- ================================================================ -->
+    <!-- PAGE 1: INTRODUCTION (PROLOGUE)                                  -->
+    <!-- Full-screen slide, pastel background, "Begin" button             -->
+    <!-- ================================================================ -->
+    <section class="story-page active" id="page-1" data-page="1" data-chapter="PROLOGUE" data-bg="#fdf5f6">
+      <div class="page-ambient-glow glow-pink" aria-hidden="true"></div>
+
+      <div class="container slide-inner page-content">
+
+        <div class="opening-container">
+          <!-- Left / Center Content -->
+          <div class="opening-text-col">
+            <div class="eyebrow-wrapper">
+              <span class="eyebrow-accent-line" aria-hidden="true"></span>
+              <span class="eyebrow-text">A little something from my heart</span>
+              <span class="eyebrow-script">for you</span>
+            </div>
+
+            <h1 class="opening-title">
+              I Have Something <br>
+              <span class="serif-italic-accent">To Tell You</span>
+            </h1>
+
+            <p class="opening-subtitle">
+              Before you read this, just give me a few quiet minutes of your time.
+            </p>
+
+            <div class="opening-actions">
+              <button class="btn-primary-pill btn-nav-action" id="btn-begin" data-next-page="2">
+                <span class="btn-shimmer" aria-hidden="true"></span>
+                <span class="btn-text">Begin the story</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Visual Polaroid Preview (Scrapbook Motif) -->
+          <div class="opening-visual-col">
+            <div class="scrapbook-preview-card">
+              <div class="tape-strip tape-top-right" aria-hidden="true"></div>
+              <div class="preview-polaroid">
+                <div class="polaroid-inner-art art-sunset">
+                  <img class="hero-preview-img" src="assets/images/photo3.jpeg" alt="Our story begins"
+                    onerror="this.src='assets/images/photo4.jpeg'">
+                </div>
+                <p class="polaroid-caption">Where every heartbeat began...</p>
+              </div>
+              <div class="wax-seal-badge" aria-hidden="true">
+                <span>❦</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 2: APOLOGY SECTION (PERSONAL LETTER)                        -->
+    <!-- Exact wording, viewport fit, "Continue" button                   -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-2" data-page="2" data-chapter="01 / THE APOLOGY" data-bg="#fdfbf7">
+      <div class="page-ambient-glow glow-warm" aria-hidden="true"></div>
+
+      <div class="container slide-inner page-content">
+
+        <div class="apology-editorial-wrapper">
+
+          <div class="letter-sheet">
+            <div class="letter-tape-accent" aria-hidden="true"></div>
+
+            <div class="letter-header">
+              <div class="section-tag-row">
+                <span class="section-tag">01 / THE APOLOGY</span>
+                <span class="handwritten-tag">From me, honestly.</span>
+              </div>
+              <h2 class="letter-title">I'm sorry.</h2>
+              <div class="letter-rule" aria-hidden="true"></div>
+            </div>
+
+            <div class="letter-content-body">
+              <p class="letter-para-lead">
+                I know I made a mistake.
+              </p>
+
+              <p class="letter-para">
+                And I know that saying sorry doesn't instantly undo the way I made you feel.
+              </p>
+
+              <p class="letter-para">
+                But I want you to know that I genuinely regret it.
+              </p>
+
+              <p class="letter-para letter-para-highlight">
+                You matter to me far more than my mistakes, my pride, or any difficult moment between us.
+              </p>
+
+              <p class="letter-para">
+                I don't want one bad moment to define something that means so much to me.
+              </p>
+
+              <p class="letter-para letter-para-conclusion">
+                I want to understand where I went wrong, learn from it, and be better for you.
+              </p>
+            </div>
+
+            <div class="letter-footer">
+              <div class="letter-signoff">
+                <span class="signoff-pre">With all my sincerity,</span>
+                <span class="signoff-signature">Forever yours</span>
+              </div>
+              <div class="wax-seal-stamp" aria-hidden="true">
+                <div class="stamp-inner">
+                  <span>DEVOTION</span>
+                  <strong>✦</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="letter-continue-row">
+              <button class="btn-chapter-continue btn-nav-action" id="btn-continue-apology" data-next-page="3">
+                <span class="btn-shimmer" aria-hidden="true"></span>
+                <span>Continue to Memories</span>
+                <span class="continue-arrow">→</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 3: MEMORIES / PHOTOS (THREE PERSONAL PHOTOS)                -->
+    <!-- Displays photo1.jpg, photo2.jpg, photo3.jpg, "Continue" button   -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-3" data-page="3" data-chapter="02 / THE MEMORIES" data-bg="#fdf2ed">
+      <div class="page-ambient-glow glow-peach" aria-hidden="true"></div>
+
+      <div class="container slide-inner page-content">
+
+        <div class="section-badge-header text-center">
+          <span class="section-tag">02 / THE MEMORIES</span>
+          <h2 class="section-headline">Pages of Our Scrapbook</h2>
+          <p class="section-subtext">The quiet memories, spontaneous laughs, and moments frozen in time.</p>
+        </div>
+
+        <!-- Romantic Hanging Photo Installation -->
+        <div class="hanging-installation-container">
+          <div class="hanging-twine-bar" aria-hidden="true">
+            <span class="twine-knot knot-left"></span>
+            <span class="twine-knot knot-center"></span>
+            <span class="twine-knot knot-right"></span>
+          </div>
+
+          <div class="hanging-photos-row count-3">
+
+            <!-- Frame 1: photo1 + photo2 -->
+            <div class="hanging-photo-item hanging-drop-1 hanging-sway-left">
+              <div class="hanging-rope">
+                <svg class="rope-curve-svg rope-svg-1" viewBox="0 0 16 45" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M8,0 Q5,22 8,45" fill="none" stroke="#be9e8c" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <div class="wooden-peg" aria-hidden="true"></div>
+              </div>
+              <div class="hanging-polaroid polaroid-duo-card duo-frame-1">
+                <div class="polaroid-duo-cluster">
+                  <div class="duo-sub-photo duo-photo-a">
+                    <img class="memory-photo-img" id="scrapbook-photo-1" src="assets/images/photo1.jpeg"
+                      alt="Coffee & Endless Talks 1" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                  <div class="duo-sub-photo duo-photo-b">
+                    <img class="memory-photo-img" id="scrapbook-photo-2" src="assets/images/photo2.jpeg"
+                      alt="Coffee & Endless Talks 2" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                </div>
+                <div class="polaroid-text">
+                  <span class="polaroid-title">Coffee &amp; Endless Talks</span>
+                  <p class="polaroid-note">"The days when even silence between us felt like sweet music."</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frame 2: photo3 + photo4 -->
+            <div class="hanging-photo-item hanging-drop-2 hanging-sway-center">
+              <div class="hanging-rope">
+                <svg class="rope-curve-svg rope-svg-2" viewBox="0 0 16 65" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M8,0 Q11,32 8,65" fill="none" stroke="#be9e8c" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <div class="wooden-peg" aria-hidden="true"></div>
+              </div>
+              <div class="hanging-polaroid polaroid-duo-card duo-frame-2">
+                <div class="polaroid-duo-cluster">
+                  <div class="duo-sub-photo duo-photo-a">
+                    <img class="memory-photo-img" id="scrapbook-photo-3" src="assets/images/photo3.jpeg"
+                      alt="Under the City Stars 1" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                  <div class="duo-sub-photo duo-photo-b">
+                    <img class="memory-photo-img" id="scrapbook-photo-4" src="assets/images/photo4.jpeg"
+                      alt="Under the City Stars 2" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                </div>
+                <div class="polaroid-text">
+                  <span class="polaroid-title">Under the City Stars</span>
+                  <p class="polaroid-note">"Holding hands in the cold air, wishing the night would never end."</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frame 3: photo5 + photo6 -->
+            <div class="hanging-photo-item hanging-drop-3 hanging-sway-right">
+              <div class="hanging-rope">
+                <svg class="rope-curve-svg rope-svg-3" viewBox="0 0 16 50" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M8,0 Q5,25 8,50" fill="none" stroke="#be9e8c" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+                <div class="wooden-peg" aria-hidden="true"></div>
+              </div>
+              <div class="hanging-polaroid polaroid-duo-card duo-frame-3">
+                <div class="polaroid-duo-cluster">
+                  <div class="duo-sub-photo duo-photo-a">
+                    <img class="memory-photo-img" id="scrapbook-photo-5" src="assets/images/photo5.jpeg"
+                      alt="Every Quiet Hug 1" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                  <div class="duo-sub-photo duo-photo-b">
+                    <img class="memory-photo-img" id="scrapbook-photo-6" src="assets/images/photo6.jpeg"
+                      alt="Every Quiet Hug 2" loading="lazy"
+                      onerror="if(!this.src.endsWith('.jpg')) this.src=this.src.replace(/\.jpeg$/,'.jpg');">
+                  </div>
+                </div>
+                <div class="polaroid-text">
+                  <span class="polaroid-title">Every Quiet Hug</span>
+                  <p class="polaroid-note">"Knowing that in your arms is the only place in this world I belong."</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page-action-center">
+          <button class="btn-chapter-continue btn-nav-action" id="btn-continue-memories" data-next-page="4">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span>Continue to Reflection</span>
+            <span class="continue-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 4: REFLECTION / WHAT YOU MEAN TO ME                         -->
+    <!-- Exact wording, 5 cards, "Continue" button                        -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-4" data-page="4" data-chapter="03 / WHAT YOU MEAN TO ME" data-bg="#fdf6f2">
+      <div class="page-ambient-glow glow-ivory" aria-hidden="true"></div>
+
+      <div class="container slide-inner page-content">
+
+        <div class="section-badge-header text-center">
+          <span class="section-tag">03 / WHAT YOU MEAN TO ME</span>
+          <h2 class="section-headline">Things I Don't Always Say</h2>
+          <p class="section-subtext">The unscripted truths that live quietly in my mind every single day.</p>
+        </div>
+
+        <div class="meaning-cards-cluster">
+
+          <div class="meaning-card card-rotate-left">
+            <span class="card-quote-mark">“</span>
+            <p class="meaning-text">You're the person I want to tell everything to, the very second it happens.</p>
+            <span class="meaning-tag">always my first thought</span>
+          </div>
+
+          <div class="meaning-card card-rotate-right card-highlight">
+            <span class="card-quote-mark">“</span>
+            <p class="meaning-text">You make ordinary moments feel like something worth remembering forever.</p>
+            <span class="meaning-tag">the everyday magic</span>
+          </div>
+
+          <div class="meaning-card card-rotate-straight">
+            <span class="card-quote-mark">“</span>
+            <p class="meaning-text">I don't want perfect. I want real, messy, laughter-filled life with you.</p>
+            <span class="meaning-tag">real &amp; true</span>
+          </div>
+
+          <div class="meaning-card card-rotate-left-subtle">
+            <span class="card-quote-mark">“</span>
+            <p class="meaning-text">You are so deeply important to me, far more than words will ever properly capture.
+            </p>
+            <span class="meaning-tag">unconditional</span>
+          </div>
+
+          <div class="meaning-card card-rotate-right-subtle">
+            <span class="card-quote-mark">“</span>
+            <p class="meaning-text">In a loud, busy world, being beside you is the only peace I ever seek.</p>
+            <span class="meaning-tag">my sanctuary</span>
+          </div>
+
+        </div>
+
+        <div class="page-action-center">
+          <button class="btn-chapter-continue btn-nav-action" id="btn-continue-reflection" data-next-page="5">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span>Continue to Our Story</span>
+            <span class="continue-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 5: OUR STORY (DYNAMIC RELATIONSHIP SCRAPBOOK GARDEN)        -->
+    <!-- Normal vertical scrolling enabled for multiple memories           -->
+    <!-- ================================================================ -->
+    <section class="story-page gallery-mode-page" id="page-5" data-page="5" data-chapter="04 / OUR STORY"
+      data-bg="#faf3f5">
+      <div class="gallery-scrollable-content">
+
+        <div class="container our-story-container page-content">
+
+          <div class="section-badge-header text-center">
+            <span class="section-tag-gold">04 / OUR MEMORIES &amp; JOURNEY</span>
+            <h2 class="section-headline">Our Story</h2>
+            <p class="section-subtext">The quiet milestones, unforgettable chapters, and pieces of us.</p>
+          </div>
+
+          <!-- Memory Counter & Quick Stats -->
+          <div class="gallery-controls-bar">
+            <div class="memory-count-badge">
+              <span class="badge-icon">📖</span>
+              <span id="memory-counter-text">Preserved Milestones &amp; Memories</span>
+            </div>
+            <div class="memory-hint-badge">
+              <span>Powered by <code>memories.js</code></span>
+            </div>
+          </div>
+
+          <!-- Dynamically Generated from memories.js as Alternating Story Scenes -->
+          <div class="memories-story-stream" id="memories-story-stream">
+            <!-- Rendered by script.js from window.memories -->
+          </div>
+
+          <!-- Climax Transition at bottom of Our Story -->
+          <div class="story-stream-continue-block text-center">
+            <div class="celebration-divider-flourish" aria-hidden="true">
+              <span class="flourish-line"></span>
+              <span class="flourish-heart">❦</span>
+              <span class="flourish-line"></span>
+            </div>
+            <p class="story-lead-to-proposal">Every memory, every smile, and every moment led us right here...</p>
+            <button class="btn-primary-pill btn-large-gold btn-nav-action" id="btn-continue-to-proposal"
+              data-next-page="6">
+              <span class="btn-shimmer" aria-hidden="true"></span>
+              <span class="btn-text">Continue to The Question</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <!-- Editorial Footer inside Our Story view -->
+          <footer class="editorial-footer">
+            <div class="footer-monogram">M &amp; H</div>
+            <p class="footer-note">Written with honest intention, devoted love, and a whole heart.</p>
+            <p class="footer-subtext">A permanent archive of everything that was, is, and will be.</p>
+          </footer>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 6: THE PROPOSAL (CINEMATIC CLIMAX)                          -->
+    <!-- Exact wording, YES button & playful NO button                    -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-6" data-page="6" data-chapter="05 / THE QUESTION" data-bg="#fbebf0">
+      <div class="page-ambient-glow glow-rose" aria-hidden="true"></div>
+      <div class="proposal-light-beam" aria-hidden="true"></div>
+
+      <div class="container proposal-container slide-inner page-content">
+
+        <div class="proposal-badge">
+          <span class="ring-sparkle-icon" aria-hidden="true">💍</span>
+          <span class="section-tag-gold">05 / ONE LAST QUESTION</span>
+        </div>
+
+        <h2 class="proposal-lead-in">
+          After everything...
+        </h2>
+
+        <p class="proposal-supporting-lines">
+          After all the memories, the conversations,<br>
+          the difficult moments,<br>
+          and all the moments that made me smile...
+        </p>
+
+        <div class="grand-question-box">
+          <h1 class="grand-question-title">
+            Will you be mine? <span class="heart-pulse-icon">❤️</span>
+          </h1>
+          <div class="gold-accent-underline" aria-hidden="true"></div>
+        </div>
+
+        <p class="proposal-note">
+          Choose carefully. <span class="note-heart">❤️</span>
+        </p>
+
+        <!-- Playful Alert / Feedback Banner for NO interaction -->
+        <div class="choice-toast-banner" id="choice-toast" aria-live="polite"></div>
+
+        <!-- Choice Actions Area -->
+        <div class="choice-actions-container" id="choice-actions-container">
+          <!-- YES Button -->
+          <button class="btn-proposal-yes" id="btn-choice-yes" data-next-page="7">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span class="btn-yes-heart" aria-hidden="true">💖</span>
+            <span class="btn-yes-text">YES, I WILL ❤️</span>
+          </button>
+
+          <!-- Playful NO Button -->
+          <div class="btn-no-wrapper" id="btn-no-wrapper">
+            <button class="btn-proposal-no" id="btn-choice-no">
+              <span id="btn-no-text">NO</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 7: FINAL CELEBRATION                                        -->
+    <!-- Warmer, celebratory, vows, button to revisit Our Story / replay  -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-7" data-page="7" data-chapter="06 / CELEBRATION" data-bg="#fdf9f0">
+      <div class="page-ambient-glow glow-gold" aria-hidden="true"></div>
+
+      <div class="container celebration-container slide-inner page-content">
+
+        <div class="celebration-badge-row">
+          <span class="celebration-seal">💍</span>
+          <span class="section-tag-gold">06 / FROM ME TO YOU</span>
+        </div>
+
+        <div class="celebration-headline-block">
+          <h1 class="celebration-title">She said yes. ❤️</h1>
+          <p class="celebration-subline">And somehow, everything feels a little brighter.</p>
+          <p class="celebration-gratitude">Thank you for choosing us.</p>
+        </div>
+
+        <div class="celebration-divider-flourish" aria-hidden="true">
+          <span class="flourish-line"></span>
+          <span class="flourish-heart">❦</span>
+          <span class="flourish-line"></span>
+        </div>
+
+        <!-- Final Letter & Vows -->
+        <div class="final-toast-card">
+          <h2 class="final-toast-title">Here's to everything that comes next.</h2>
+
+          <div class="final-vows-list">
+            <p>To the conversations we'll have,</p>
+            <p>the places we'll go together,</p>
+            <p>the things we'll learn,</p>
+            <p>the mistakes we'll forgive,</p>
+            <p>and all the beautiful memories still waiting for us.</p>
+          </div>
+
+          <div class="final-signoff-row">
+            <span class="final-heart">❤️</span>
+            <span class="final-script">Always choose us.</span>
+          </div>
+        </div>
+
+        <!-- Action Row: Revisit Our Story + Replay Proposal -->
+        <div class="celebration-actions-row">
+          <button class="btn-primary-pill btn-large-gold btn-nav-action" id="btn-open-story-gallery" data-next-page="5">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span class="btn-text">REVISIT OUR STORY</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="btn-ghost-action btn-nav-action" id="btn-replay-story" data-next-page="1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Revisit Proposal</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 1. Load memories.js first -->
+  <script src="memories.js"></script>
+  <!-- 2. Load script.js second -->
+  <script src="script.js"></script>
+</body>
+
+</html>
