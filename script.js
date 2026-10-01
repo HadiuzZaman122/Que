@@ -55,6 +55,21 @@ async function loadSupabasePhotos() {
   }
 }
 
+function resolveSupabasePhotoUrl(photoPath) {
+  if (!photoPath) return photoPath;
+
+  const normalized = String(photoPath)
+    .replace(/^\.?\//, '')
+    .replace(/^assets\/images\//, '')
+    .replace(/^assets\/memories\//, 'memories/');
+
+  const match = supabasePhotoUrls.find(
+    item => item.path === normalized
+  );
+
+  return match?.url || photoPath;
+}
+
 (function () {
   'use strict';
 
@@ -1084,7 +1099,11 @@ async function loadSupabasePhotos() {
     let html = '';
 
     memoryList.forEach((mem, index) => {
-      const photoArray = Array.isArray(mem.photos) ? mem.photos.filter(p => Boolean(p)) : (mem.photo ? [mem.photo] : []);
+      const rawPhotoArray = Array.isArray(mem.photos)
+        ? mem.photos.filter(p => Boolean(p))
+        : (mem.photo ? [mem.photo] : []);
+
+      const photoArray = rawPhotoArray.map(resolveSupabasePhotoUrl);
       const hasPhotos = photoArray.length > 0;
       const sceneNum = index + 1;
       const layoutId = layoutAssignments[index] || 1;
@@ -1253,12 +1272,12 @@ async function loadSupabasePhotos() {
      ========================================================================== */
   function initScrapbookPhotos() {
     const photoConfigs = [
-      { id: 'scrapbook-photo-1', src: supabasePhotoUrls[0] || scrapbookPhoto1 },
-      { id: 'scrapbook-photo-2', src: supabasePhotoUrls[1] || scrapbookPhoto2 },
-      { id: 'scrapbook-photo-3', src: supabasePhotoUrls[2] || scrapbookPhoto3 },
-      { id: 'scrapbook-photo-4', src: supabasePhotoUrls[3] || scrapbookPhoto4 },
-      { id: 'scrapbook-photo-5', src: supabasePhotoUrls[4] || scrapbookPhoto5 },
-      { id: 'scrapbook-photo-6', src: supabasePhotoUrls[5] || scrapbookPhoto6 }
+      { id: 'scrapbook-photo-1', src: supabasePhotoUrls[0]?.url || scrapbookPhoto1 },
+      { id: 'scrapbook-photo-2', src: supabasePhotoUrls[1]?.url || scrapbookPhoto2 },
+      { id: 'scrapbook-photo-3', src: supabasePhotoUrls[2]?.url || scrapbookPhoto3 },
+      { id: 'scrapbook-photo-4', src: supabasePhotoUrls[3]?.url || scrapbookPhoto4 },
+      { id: 'scrapbook-photo-5', src: supabasePhotoUrls[4]?.url || scrapbookPhoto5 },
+      { id: 'scrapbook-photo-6', src: supabasePhotoUrls[5]?.url || scrapbookPhoto6 }
     ];
 
     photoConfigs.forEach(item => {
@@ -1419,15 +1438,93 @@ async function loadSupabasePhotos() {
   }
 
   /* ==========================================================================
+     6. INTERACTIVE PHOTO ZOOM / ENLARGEMENT SYSTEM (TAP/CLICK FOR ALL PHOTOS)
+     ========================================================================== */
+  function initPhotoZoom() {
+    const overlay = document.getElementById('photo-zoom-overlay');
+    const zoomImg = document.getElementById('photo-zoom-img');
+    const zoomCaption = document.getElementById('photo-zoom-caption');
+    const closeBtn = document.getElementById('photo-zoom-close');
+
+    if (!overlay || !zoomImg) return;
+
+    let activeTriggerImg = null;
+
+    function openZoom(imgEl) {
+      if (!imgEl || !imgEl.src) return;
+      activeTriggerImg = imgEl;
+      zoomImg.src = imgEl.src;
+
+      const altText = imgEl.getAttribute('alt') || '';
+      if (zoomCaption) {
+        // Only show descriptive captions, not generic placeholder alt texts
+        if (altText && !altText.toLowerCase().includes('photo') && !altText.toLowerCase().includes('story begins')) {
+          zoomCaption.textContent = altText;
+          zoomCaption.style.display = 'block';
+        } else {
+          zoomCaption.textContent = '';
+          zoomCaption.style.display = 'none';
+        }
+      }
+
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeZoom() {
+      if (!overlay.classList.contains('open')) return;
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      activeTriggerImg = null;
+    }
+
+    // Delegated click on any photo across the entire site
+    document.addEventListener('click', (e) => {
+      // 1. If the zoom overlay is open, any click/tap on the overlay (photo, backdrop, or close button) closes it
+      if (overlay.classList.contains('open')) {
+        if (overlay.contains(e.target) || e.target === overlay) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeZoom();
+          return;
+        }
+      }
+
+      // 2. Check if clicked target is a personal photograph
+      const clickedImg = e.target.closest(
+        '.memory-photo-img, .hero-preview-img, [id^="scrapbook-photo-"], .polaroid-inner-art img, .polaroid-duo-cluster img, .scene-visual-block img'
+      );
+
+      if (clickedImg && clickedImg.tagName === 'IMG') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (overlay.classList.contains('open') && activeTriggerImg === clickedImg) {
+          closeZoom();
+        } else {
+          openZoom(clickedImg);
+        }
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        closeZoom();
+      }
+    });
+  }
+
+  /* ==========================================================================
      INITIALIZATION ON DOM LOAD (PRESERVES ACTIVE PAGE & SCROLL VIA SESSIONSTORAGE)
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
     initAmbientCanvas();
+    initJourneyMenu();
+    initPhotoZoom();
     loadSupabasePhotos().then(() => {
       initScrapbookPhotos();
+      renderMemoriesFromData();
     });
-    initJourneyMenu();
-    renderMemoriesFromData();
     initDaysTogetherCounter();
 
     // Check saved page in sessionStorage

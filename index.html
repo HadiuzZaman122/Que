@@ -1192,6 +1192,19 @@
 
   </main>
 
+  <!-- Photo Zoom / Tap-to-Enlarge Modal Overlay -->
+  <div id="photo-zoom-overlay" class="photo-zoom-overlay" aria-hidden="true">
+    <div class="photo-zoom-backdrop"></div>
+    <div class="photo-zoom-dialog" role="dialog" aria-modal="true" aria-label="Zoomed photograph">
+      <div class="photo-zoom-card">
+        <div class="photo-zoom-tape" aria-hidden="true"></div>
+        <img id="photo-zoom-img" class="photo-zoom-img" src="" alt="Enlarged photo">
+        <div id="photo-zoom-caption" class="photo-zoom-caption"></div>
+      </div>
+      <button class="photo-zoom-close" id="photo-zoom-close" aria-label="Close zoomed photo">✕</button>
+    </div>
+  </div>
+
   <!-- 1. Load memories.js first -->
   <script src="memories.js"></script>
   <!-- 2. Load script.js second -->

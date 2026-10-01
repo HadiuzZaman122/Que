@@ -62,6 +62,15 @@ const memories = [
       "assets/memories/fm11.jpeg"
 
     ]
+  },
+
+  {
+    date: "~ 1st Octo'26 ~",
+    title: "~ The Good and Bad Days ~",
+    description: "Some days bring happiness and heaviness together, and it can feel so unfair when life changes the mood in a single moment. But please, don't lose hope. ❤️ /n  Whatever today has brought, remember that one difficult moment doesn't define the days ahead. Life doesn't always make sense while we're living through it, but sometimes things unfold in ways we cannot understand yet. Keep faith, stay strong, and take things one step at a time./n And no matter what happens, don't forget that you don't have to face the difficult moments alone. I'm here, and I'll be beside you through the good days and the difficult ones too. ❤️🌷",
+    photos: [
+      "assets/memories/2l.jpeg"
+    ]
   }
 ];
 
