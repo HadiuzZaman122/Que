@@ -27,6 +27,34 @@ const scrapbookPhoto4 = "assets/images/photo4.jpeg";
 const scrapbookPhoto5 = "assets/images/photo5.jpeg";
 const scrapbookPhoto6 = "assets/images/photo6.jpeg";
 
+let supabasePhotoUrls = [];
+
+const SUPABASE_PHOTO_FUNCTION =
+  "https://jqotbraoxrxlqkgznfym.supabase.co/functions/v1/get-photo-urls";
+
+async function loadSupabasePhotos() {
+  try {
+    const response = await fetch(SUPABASE_PHOTO_FUNCTION, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({})
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success || !Array.isArray(result.urls)) {
+      throw new Error("Could not load Supabase photo URLs.");
+    }
+
+    supabasePhotoUrls = result.urls;
+    console.log("Supabase photos loaded successfully.");
+  } catch (error) {
+    console.error("Supabase photo loading failed:", error);
+  }
+}
+
 (function () {
   'use strict';
 
@@ -1225,12 +1253,12 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
      ========================================================================== */
   function initScrapbookPhotos() {
     const photoConfigs = [
-      { id: 'scrapbook-photo-1', src: scrapbookPhoto1 },
-      { id: 'scrapbook-photo-2', src: scrapbookPhoto2 },
-      { id: 'scrapbook-photo-3', src: scrapbookPhoto3 },
-      { id: 'scrapbook-photo-4', src: scrapbookPhoto4 },
-      { id: 'scrapbook-photo-5', src: scrapbookPhoto5 },
-      { id: 'scrapbook-photo-6', src: scrapbookPhoto6 }
+      { id: 'scrapbook-photo-1', src: supabasePhotoUrls[0] || scrapbookPhoto1 },
+      { id: 'scrapbook-photo-2', src: supabasePhotoUrls[1] || scrapbookPhoto2 },
+      { id: 'scrapbook-photo-3', src: supabasePhotoUrls[2] || scrapbookPhoto3 },
+      { id: 'scrapbook-photo-4', src: supabasePhotoUrls[3] || scrapbookPhoto4 },
+      { id: 'scrapbook-photo-5', src: supabasePhotoUrls[4] || scrapbookPhoto5 },
+      { id: 'scrapbook-photo-6', src: supabasePhotoUrls[5] || scrapbookPhoto6 }
     ];
 
     photoConfigs.forEach(item => {
@@ -1395,7 +1423,9 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
     initAmbientCanvas();
-    initScrapbookPhotos();
+    loadSupabasePhotos().then(() => {
+      initScrapbookPhotos();
+    });
     initJourneyMenu();
     renderMemoriesFromData();
     initDaysTogetherCounter();
