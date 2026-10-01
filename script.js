@@ -77,14 +77,14 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
     // Persist current active page into sessionStorage
     try {
       sessionStorage.setItem('currentPage', String(targetIdx));
-    } catch (e) {}
+    } catch (e) { }
 
     // Reset scroll if user is navigating afresh to Our Story from another page
     if (!isInitial && targetIdx === 5 && storyPageEl) {
       storyPageEl.scrollTop = 0;
       try {
         sessionStorage.setItem('storyScrollPosition', '0');
-      } catch (e) {}
+      } catch (e) { }
     }
 
     // Remove active class from all pages & activate target
@@ -92,7 +92,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
       const pIdx = parseInt(page.getAttribute('data-page'), 10);
       if (pIdx === targetIdx) {
         page.classList.add('active');
-        
+
         // Update body background color
         const targetBg = page.getAttribute('data-bg') || '#fdf5f6';
         document.body.style.backgroundColor = targetBg;
@@ -111,6 +111,11 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
         // If entering Our Story (Page 5), render memories
         if (targetIdx === 5) {
           renderMemoriesFromData();
+        }
+
+        // If entering Our Days Together (Page 8), immediately refresh counter
+        if (targetIdx === 8) {
+          updateDaysTogetherCounter();
         }
       } else {
         page.classList.remove('active');
@@ -133,7 +138,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
     if (storyPageEl && currentPage === 5) {
       try {
         sessionStorage.setItem('storyScrollPosition', String(storyPageEl.scrollTop));
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 
@@ -152,7 +157,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
           });
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   if (storyPageEl) {
@@ -198,7 +203,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
 
       // Check horizontal swipe with low vertical movement
       if (Math.abs(deltaX) > 65 && Math.abs(deltaY) < 50) {
-        if (deltaX < 0 && currentPage < 7) {
+        if (deltaX < 0 && currentPage < pages.length) {
           // Swipe Left -> Next Slide
           showPage(currentPage + 1);
         } else if (deltaX > 0 && currentPage > 1) {
@@ -261,11 +266,28 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
 
   // YES Button Click
   if (btnChoiceYes) {
-    btnChoiceYes.addEventListener('click', () => {
+    btnChoiceYes.addEventListener('click', async () => {
+
+      // Send acceptance notification to Telegram through Supabase
+      try {
+        await fetch(
+          'https://jqotbraoxrxlqkgznfym.supabase.co/functions/v1/she-accepted',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+          }
+        );
+      } catch (error) {
+        console.error('Acceptance notification error:', error);
+      }
+
+      // Keep the existing celebration page exactly as it is
       showPage(7);
     });
   }
-
   /* ==========================================================================
      3. LARGE & NUMEROUS ANIMATED ATMOSPHERE CANVAS
      Hearts (25-70px), Flowers (25-55px), Leaves (30-65px), Sparkles
@@ -326,12 +348,12 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
       else type = 'sparkle';
 
       const isMob = window.innerWidth < 768;
-      
+
       // Prominent Larger Sizes
       let size = 30;
       if (type === 'heart') {
         const isAccentLarge = Math.random() < 0.15;
-        size = isMob 
+        size = isMob
           ? (isAccentLarge ? Math.random() * 15 + 38 : Math.random() * 16 + 22)
           : (isAccentLarge ? Math.random() * 20 + 52 : Math.random() * 24 + 28);
       } else if (type === 'flower') {
@@ -346,9 +368,9 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
       const y = initialY !== null ? initialY : height + Math.random() * 80;
 
       const colorBase = type === 'heart' ? heartColors[Math.floor(Math.random() * heartColors.length)] :
-                        type === 'flower' ? flowerColors[Math.floor(Math.random() * flowerColors.length)] :
-                        type === 'leaf' ? leafColors[Math.floor(Math.random() * leafColors.length)] :
-                        '#dfb867';
+        type === 'flower' ? flowerColors[Math.floor(Math.random() * flowerColors.length)] :
+          type === 'leaf' ? leafColors[Math.floor(Math.random() * leafColors.length)] :
+            '#dfb867';
 
       // Varied Flow Durations (8s to 18s equivalent speeds)
       const speedY = -(Math.random() * 0.65 + 0.35);
@@ -383,7 +405,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
       c.rotate(rot);
       c.globalAlpha = opacity;
       c.fillStyle = color.startsWith('rgba') ? color + opacity + ')' : color;
-      
+
       const s = size / 20;
       c.beginPath();
       c.moveTo(0, s * -4);
@@ -856,7 +878,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
         </div>
       `;
     }
-    
+
     if (count <= 3) {
       const heroPhoto = photos[0];
       const flankPhotos = photos.slice(1);
@@ -952,8 +974,8 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
   // Master Structure Dispatcher
   function buildPhotoInstallation(photoArray, memoryIndex, title, layoutId = 1) {
     if (!photoArray || photoArray.length === 0) return '';
-    
-    switch(layoutId) {
+
+    switch (layoutId) {
       case 1: return buildClassicHanging(photoArray, title);
       case 2: return buildBranchHanging(photoArray, title);
       case 3: return buildPolaroidOverlap(photoArray, title);
@@ -985,10 +1007,10 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
         hash = ((hash << 5) - hash) + key.charCodeAt(i);
         hash |= 0;
       }
-      
+
       let candidate = null;
       const offset = Math.abs(hash) % totalLayouts;
-      
+
       for (let i = 0; i < totalLayouts; i++) {
         const potential = layoutSequence[(offset + i + idx) % totalLayouts];
         if (!recent.includes(potential)) {
@@ -996,7 +1018,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
           break;
         }
       }
-      
+
       if (!candidate) {
         for (let l = 1; l <= totalLayouts; l++) {
           if (recent.length === 0 || l !== recent[recent.length - 1]) {
@@ -1017,8 +1039,8 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
   }
 
   function renderMemoriesFromData() {
-    const container = document.getElementById('memories-story-stream') || 
-                      document.getElementById('memories-cards-container');
+    const container = document.getElementById('memories-story-stream') ||
+      document.getElementById('memories-cards-container');
     if (!container) return;
 
     // Read window.memories populated from memories.js
@@ -1043,7 +1065,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
         // Dedicated Romantic Letter / Scrapbook Entry for 0-photo memory with subtle handmade accents
         const letterStyles = ['letter-motif-botanical', 'letter-motif-waxseal', 'letter-motif-stamp', 'letter-motif-ribbon'];
         const letterMotif = letterStyles[index % letterStyles.length];
-        
+
         let decorativeAccent = '';
         if (letterMotif === 'letter-motif-waxseal') {
           decorativeAccent = `<div class="scene-waxseal-accent" aria-hidden="true"><div class="stamp-inner"><span>DEVOTION</span><strong>❦</strong></div></div>`;
@@ -1227,8 +1249,145 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
     if (window.location.hash) {
       try {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
-      } catch (err) {}
+      } catch (err) { }
     }
+  }
+
+  /* ==========================================================================
+     7. DYNAMIC "OUR DAYS TOGETHER" LIVE TIME COUNTER
+     Start Date: 04 April 2026 (04/04/2026 00:00:00 Local Browser Time)
+     ========================================================================== */
+  function updateDaysTogetherCounter() {
+    const startDate = new Date(2026, 3, 4, 0, 0, 0); // April 4, 2026 00:00:00 Local Time (month index 3 = April)
+    const now = new Date();
+    const diffMs = Math.max(0, now.getTime() - startDate.getTime());
+
+    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+    const seconds = Math.floor((diffMs / 1000) % 60);
+
+    const mainDaysNumber = document.getElementById('days-count-number');
+    const unitDays = document.getElementById('counter-unit-days');
+    const unitHours = document.getElementById('counter-unit-hours');
+    const unitMinutes = document.getElementById('counter-unit-minutes');
+    const unitSeconds = document.getElementById('counter-unit-seconds');
+
+    if (mainDaysNumber) {
+      mainDaysNumber.textContent = totalDays.toLocaleString();
+    }
+    if (unitDays) {
+      unitDays.textContent = String(totalDays);
+    }
+    if (unitHours) {
+      unitHours.textContent = String(hours).padStart(2, '0');
+    }
+    if (unitMinutes) {
+      unitMinutes.textContent = String(minutes).padStart(2, '0');
+    }
+    if (unitSeconds) {
+      unitSeconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    // --- Calendar-aware Year & Month side card calculations ---
+    const startYear = 2026, startMonth = 3, startDay = 4; // April = month index 3
+
+    // Completed calendar years
+    let completedYears = now.getFullYear() - startYear;
+    const lastYearlyAnniv = new Date(startYear + completedYears, startMonth, startDay);
+    if (now < lastYearlyAnniv) {
+      completedYears--;
+    }
+    const actualLastYearlyAnniv = new Date(startYear + completedYears, startMonth, startDay);
+    const daysAfterYear = Math.max(0, Math.floor((now.getTime() - actualLastYearlyAnniv.getTime()) / (1000 * 60 * 60 * 24)));
+
+    // Completed calendar months
+    let completedMonths = (now.getFullYear() - startYear) * 12 + (now.getMonth() - startMonth);
+    const lastMonthlyAnnivMonth = startMonth + completedMonths;
+    const lastMonthlyAnnivYear = startYear + Math.floor(lastMonthlyAnnivMonth / 12);
+    const lastMonthlyAnnivMo = lastMonthlyAnnivMonth % 12;
+    let lastMonthlyAnniv = new Date(lastMonthlyAnnivYear, lastMonthlyAnnivMo, startDay);
+    if (now < lastMonthlyAnniv) {
+      completedMonths--;
+      const prevMonth = startMonth + completedMonths;
+      const prevYear = startYear + Math.floor(prevMonth / 12);
+      const prevMo = prevMonth % 12;
+      lastMonthlyAnniv = new Date(prevYear, prevMo, startDay);
+    }
+    const daysAfterMonth = Math.max(0, Math.floor((now.getTime() - lastMonthlyAnniv.getTime()) / (1000 * 60 * 60 * 24)));
+
+    // Clamp to zero if before start date
+    if (now < startDate) {
+      completedYears = 0;
+      completedMonths = 0;
+    }
+
+    // --- Next Anniversary Countdowns ---
+    const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+
+    // Next yearly anniversary (next occurrence of April 4)
+    let nextYearlyAnniv;
+    if (now < startDate) {
+      nextYearlyAnniv = startDate;
+    } else {
+      const currentYearAnniv = new Date(now.getFullYear(), startMonth, startDay, 0, 0, 0);
+      if (todayMidnight.getTime() < currentYearAnniv.getTime()) {
+        nextYearlyAnniv = currentYearAnniv;
+      } else {
+        nextYearlyAnniv = new Date(now.getFullYear() + 1, startMonth, startDay, 0, 0, 0);
+      }
+    }
+    const msUntilNextYear = nextYearlyAnniv.getTime() - todayMidnight.getTime();
+    const daysUntilNextYear = Math.max(0, Math.round(msUntilNextYear / (1000 * 60 * 60 * 24)));
+
+    // Next monthly anniversary (next occurrence of 4th of month)
+    let nextMonthlyAnniv;
+    if (now < startDate) {
+      nextMonthlyAnniv = startDate;
+    } else {
+      const currentMonthAnniv = new Date(now.getFullYear(), now.getMonth(), startDay, 0, 0, 0);
+      if (todayMidnight.getTime() < currentMonthAnniv.getTime()) {
+        nextMonthlyAnniv = currentMonthAnniv;
+      } else {
+        nextMonthlyAnniv = new Date(now.getFullYear(), now.getMonth() + 1, startDay, 0, 0, 0);
+      }
+    }
+    const msUntilNextMonth = nextMonthlyAnniv.getTime() - todayMidnight.getTime();
+    const daysUntilNextMonth = Math.max(0, Math.round(msUntilNextMonth / (1000 * 60 * 60 * 24)));
+
+    // Update side card DOM
+    const yearsNumEl = document.getElementById('side-years-number');
+    const yearsLblEl = document.getElementById('side-years-label');
+    const yearsDaysEl = document.getElementById('side-years-days');
+    const yearsDaysLblEl = document.getElementById('side-years-days-label');
+    const yearsNextDaysEl = document.getElementById('side-years-next-days');
+    const yearsNextLblEl = document.getElementById('side-years-next-lbl');
+
+    const monthsNumEl = document.getElementById('side-months-number');
+    const monthsLblEl = document.getElementById('side-months-label');
+    const monthsDaysEl = document.getElementById('side-months-days');
+    const monthsDaysLblEl = document.getElementById('side-months-days-label');
+    const monthsNextDaysEl = document.getElementById('side-months-next-days');
+    const monthsNextLblEl = document.getElementById('side-months-next-lbl');
+
+    if (yearsNumEl) yearsNumEl.textContent = String(Math.max(0, completedYears));
+    if (yearsLblEl) yearsLblEl.textContent = completedYears === 1 ? 'YEAR' : 'YEARS';
+    if (yearsDaysEl) yearsDaysEl.textContent = String(now < startDate ? 0 : daysAfterYear);
+    if (yearsDaysLblEl) yearsDaysLblEl.textContent = daysAfterYear === 1 ? 'DAY' : 'DAYS';
+    if (yearsNextDaysEl) yearsNextDaysEl.textContent = String(daysUntilNextYear);
+    if (yearsNextLblEl) yearsNextLblEl.textContent = daysUntilNextYear === 1 ? 'DAY' : 'DAYS';
+
+    if (monthsNumEl) monthsNumEl.textContent = String(Math.max(0, completedMonths));
+    if (monthsLblEl) monthsLblEl.textContent = completedMonths === 1 ? 'MONTH' : 'MONTHS';
+    if (monthsDaysEl) monthsDaysEl.textContent = String(now < startDate ? 0 : daysAfterMonth);
+    if (monthsDaysLblEl) monthsDaysLblEl.textContent = daysAfterMonth === 1 ? 'DAY' : 'DAYS';
+    if (monthsNextDaysEl) monthsNextDaysEl.textContent = String(daysUntilNextMonth);
+    if (monthsNextLblEl) monthsNextLblEl.textContent = daysUntilNextMonth === 1 ? 'DAY' : 'DAYS';
+  }
+
+  function initDaysTogetherCounter() {
+    updateDaysTogetherCounter();
+    setInterval(updateDaysTogetherCounter, 1000);
   }
 
   /* ==========================================================================
@@ -1239,12 +1398,13 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
     initScrapbookPhotos();
     initJourneyMenu();
     renderMemoriesFromData();
+    initDaysTogetherCounter();
 
     // Check saved page in sessionStorage
     let savedPage = null;
     try {
       savedPage = sessionStorage.getItem('currentPage');
-    } catch (e) {}
+    } catch (e) { }
 
     let initialPage = 1;
     if (savedPage) {
@@ -1266,7 +1426,7 @@ const scrapbookPhoto6 = "assets/images/photo6.jpeg";
     let savedPage = null;
     try {
       savedPage = sessionStorage.getItem('currentPage');
-    } catch (err) {}
+    } catch (err) { }
 
     if (savedPage) {
       const parsed = parseInt(savedPage, 10);

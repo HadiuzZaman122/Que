@@ -309,6 +309,10 @@
       id="dot-celebration">
       <span class="dot-label">07 / Celebration</span>
     </button>
+    <button class="page-dot" data-page-idx="8" title="Page 8: Our Days Together" aria-label="Page 8: Our Days Together"
+      id="dot-days-together">
+      <span class="dot-label">08 / Days Together</span>
+    </button>
   </nav>
 
   <!-- ================================================================== -->
@@ -395,6 +399,14 @@
           <div class="item-info">
             <span class="item-name">Celebration</span>
             <span class="item-desc">She said yes ❤️</span>
+          </div>
+        </button>
+
+        <button class="journey-menu-item" data-jump-page="8">
+          <span class="item-num">08</span>
+          <div class="item-info">
+            <span class="item-name">Our Days Together</span>
+            <span class="item-desc">And the story keeps going... ❤️</span>
           </div>
         </button>
       </nav>
@@ -896,9 +908,15 @@
           </div>
         </div>
 
-        <!-- Action Row: Revisit Our Story + Replay Proposal -->
+        <!-- Action Row: Revisit Our Story + Replay Proposal + See How Many Days -->
         <div class="celebration-actions-row">
-          <button class="btn-primary-pill btn-large-gold btn-nav-action" id="btn-open-story-gallery" data-next-page="5">
+          <button class="btn-primary-pill btn-large-gold btn-nav-action" id="btn-see-days" data-next-page="8">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span class="btn-text">See How Many Days ❤️</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="btn-primary-pill btn-nav-action" id="btn-open-story-gallery" data-next-page="5">
             <span class="btn-shimmer" aria-hidden="true"></span>
             <span class="btn-text">REVISIT OUR STORY</span>
             <span class="btn-arrow" aria-hidden="true">→</span>
@@ -910,6 +928,262 @@
               <path d="M3 3v5h5"></path>
             </svg>
             <span>Revisit Proposal</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PAGE 8: OUR DAYS TOGETHER (TRUE FINAL EMOTIONAL REWARD)          -->
+    <!-- Dynamic live counter since 04 April 2026                          -->
+    <!-- ================================================================ -->
+    <section class="story-page" id="page-8" data-page="8" data-chapter="07 / OUR DAYS TOGETHER" data-bg="#fdf5f7">
+      <div class="page-ambient-glow glow-together" aria-hidden="true"></div>
+
+      <div class="container days-together-container slide-inner page-content">
+
+        <div class="together-badge-row">
+          <span class="together-seal">🕊️</span>
+          <span class="section-tag-gold">07 / OUR FOREVER CHAPTER</span>
+        </div>
+
+        <!-- Hanging Composition Stage: Continuous Rope + Three Hanging Cards -->
+        <div class="together-hanging-stage">
+
+          <!-- CONTINUOUS HANGING ROPE SVG (Background decorative string) -->
+          <svg class="together-hanging-rope-svg" viewBox="0 0 940 120" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <filter id="ropeGlow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#c47687" flood-opacity="0.25" />
+              </filter>
+            </defs>
+            <!-- Drop Shadow Path -->
+            <path class="rope-path-shadow" d="M 20,40 Q 110,88 205,58 Q 338,102 470,50 Q 602,102 735,58 Q 830,88 920,40" />
+            <!-- Main Twisted Twine / Pastel Pink Rope -->
+            <path class="rope-path-main" d="M 20,38 Q 110,86 205,56 Q 338,100 470,48 Q 602,100 735,56 Q 830,86 920,38" filter="url(#ropeGlow)" />
+            <!-- Rope Braided Texture / Highlight -->
+            <path class="rope-path-braid" d="M 20,38 Q 110,86 205,56 Q 338,100 470,48 Q 602,100 735,56 Q 830,86 920,38" />
+            <!-- End Tassels / Wall Pins -->
+            <circle cx="20" cy="38" r="5" fill="#dfb867" stroke="#c47687" stroke-width="1.5" />
+            <circle cx="920" cy="38" r="5" fill="#dfb867" stroke="#c47687" stroke-width="1.5" />
+          </svg>
+
+          <!-- Three-Card Composition: Year | Main | Month -->
+          <div class="together-cards-row">
+
+            <!-- LEFT SIDE CARD — YEAR COUNTER (Hanging, tilted -5deg) -->
+            <div class="together-side-wrap side-wrap-left">
+              <div class="together-side-card side-card-left">
+                <!-- Hanging Hook Ring & Ribbon Bow -->
+                <div class="card-hanger" aria-hidden="true">
+                  <span class="card-hanger-ring"></span>
+                  <span class="card-hanger-bow">🎀</span>
+                </div>
+
+                <div class="side-card-tape" aria-hidden="true"></div>
+                <div class="side-card-top-tag">YEARS</div>
+                <div class="side-card-number" id="side-years-number">0</div>
+                <div class="side-card-label" id="side-years-label">YEARS</div>
+                <div class="side-card-sub">
+                  <span class="side-card-sub-num" id="side-years-days">0</span>
+                  <span class="side-card-sub-lbl" id="side-years-days-label">DAYS</span>
+                </div>
+                <!-- Countdown to next yearly anniversary -->
+                <div class="side-card-countdown">
+                  <div class="side-card-countdown-lbl">NEXT ANNIVERSARY</div>
+                  <div class="side-card-countdown-val">
+                    <span class="side-card-countdown-num" id="side-years-next-days">0</span>
+                    <span class="side-card-countdown-unit" id="side-years-next-lbl">DAYS</span>
+                  </div>
+                </div>
+                <div class="side-card-heart" aria-hidden="true">❦</div>
+              </div>
+              <!-- Decorative curved support -->
+              <svg class="side-card-curve" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M10,4 Q60,28 110,4" fill="none" stroke="#c47687" stroke-width="1.2" opacity="0.45" />
+                <path d="M20,6 Q60,24 100,6" fill="none" stroke="#dfb867" stroke-width="0.8" opacity="0.35" />
+              </svg>
+            </div>
+
+            <!-- CENTER MAIN CARD + TWO HALF-HEART SHAPES -->
+            <div class="together-main-wrap">
+
+              <!-- LEFT HALF-HEART (Emerges behind lower-left) -->
+              <div class="center-card-half-heart half-heart-left" aria-hidden="true">
+                <svg viewBox="0 0 160 200" class="half-heart-svg">
+                  <defs>
+                    <linearGradient id="halfHeartGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#fff2f6" stop-opacity="0.95" />
+                      <stop offset="50%" stop-color="#fddde6" stop-opacity="0.88" />
+                      <stop offset="100%" stop-color="#f7c5d4" stop-opacity="0.75" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Left Heart Half Curve -->
+                  <path d="M 155,190 C 90,160 10,120 10,65 C 10,25 45,5 85,5 C 120,5 145,25 155,50 Z" 
+                        fill="url(#halfHeartGradLeft)" stroke="#e491a6" stroke-width="1.8" stroke-dasharray="4,3" />
+                  <path d="M 140,170 C 85,145 25,110 25,65 C 25,35 52,18 85,18 C 115,18 135,32 140,55" 
+                        fill="none" stroke="#f2b5c4" stroke-width="1.2" opacity="0.65" />
+                  <circle cx="65" cy="55" r="3" fill="#dfb867" opacity="0.8" />
+                  <circle cx="95" cy="85" r="2.5" fill="#c47687" opacity="0.7" />
+                </svg>
+              </div>
+
+              <!-- RIGHT HALF-HEART (Emerges behind lower-right) -->
+              <div class="center-card-half-heart half-heart-right" aria-hidden="true">
+                <svg viewBox="0 0 160 200" class="half-heart-svg">
+                  <defs>
+                    <linearGradient id="halfHeartGradRight" x1="100%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#fff2f6" stop-opacity="0.95" />
+                      <stop offset="50%" stop-color="#fddde6" stop-opacity="0.88" />
+                      <stop offset="100%" stop-color="#f7c5d4" stop-opacity="0.75" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Right Heart Half Curve -->
+                  <path d="M 5,190 C 70,160 150,120 150,65 C 150,25 115,5 75,5 C 40,5 15,25 5,50 Z" 
+                        fill="url(#halfHeartGradRight)" stroke="#e491a6" stroke-width="1.8" stroke-dasharray="4,3" />
+                  <path d="M 20,170 C 75,145 135,110 135,65 C 135,35 108,18 75,18 C 45,18 25,32 20,55" 
+                        fill="none" stroke="#f2b5c4" stroke-width="1.2" opacity="0.65" />
+                  <circle cx="95" cy="55" r="3" fill="#dfb867" opacity="0.8" />
+                  <circle cx="65" cy="85" r="2.5" fill="#c47687" opacity="0.7" />
+                </svg>
+              </div>
+
+              <div class="together-card">
+                <!-- Hanging Hook Rings & Central Ribbon Bow -->
+                <div class="card-hanger center-hanger" aria-hidden="true">
+                  <span class="card-hanger-ring ring-left"></span>
+                  <span class="card-hanger-bow">🎀</span>
+                  <span class="card-hanger-ring ring-right"></span>
+                </div>
+
+                <div class="together-tape-accent" aria-hidden="true"></div>
+
+                <!-- Subtle Botanical Flourishes (behind content) -->
+                <div class="together-corner-flourish flourish-tl" aria-hidden="true">
+                  <svg viewBox="0 0 60 60" class="flourish-svg">
+                    <path d="M5,55 Q10,20 40,10 Q55,5 58,2" fill="none" stroke="#7e947b" stroke-width="1.4" opacity="0.65" />
+                    <path d="M20,30 Q30,15 45,25 Q35,40 20,30 Z" fill="#b5cca8" opacity="0.8" />
+                    <circle cx="48" cy="12" r="6" fill="#fcd3de" opacity="0.85" />
+                    <circle cx="48" cy="12" r="3" fill="#dfb867" opacity="0.9" />
+                  </svg>
+                </div>
+                <div class="together-corner-flourish flourish-br" aria-hidden="true">
+                  <svg viewBox="0 0 60 60" class="flourish-svg">
+                    <path d="M55,5 Q50,40 20,50 Q5,55 2,58" fill="none" stroke="#7e947b" stroke-width="1.4" opacity="0.65" />
+                    <path d="M40,30 Q30,45 15,35 Q25,20 40,30 Z" fill="#9db89f" opacity="0.8" />
+                    <circle cx="12" cy="48" r="6" fill="#fae1dd" opacity="0.85" />
+                    <circle cx="12" cy="48" r="3" fill="#dfb867" opacity="0.9" />
+                  </svg>
+                </div>
+
+                <p class="together-lead-script">And the story keeps going...</p>
+
+                <div class="together-hero-counter">
+                  <div class="together-number-wrap">
+                    <span class="together-big-number" id="days-count-number">0</span>
+                    <span class="together-sparkle-accents" aria-hidden="true">✨</span>
+                  </div>
+                  <h2 class="together-days-label">DAYS TOGETHER</h2>
+                  <p class="together-since-date">Since 04 April 2026 <span class="together-heart-beat">❤️</span></p>
+                </div>
+
+                <div class="celebration-divider-flourish together-divider" aria-hidden="true">
+                  <span class="flourish-line"></span>
+                  <span class="flourish-heart">❦</span>
+                  <span class="flourish-line"></span>
+                </div>
+
+                <!-- Live Breakdown Counter Grid (Days, Hours, Minutes, Seconds) -->
+                <div class="together-live-grid" aria-label="Live time counter">
+                  <div class="live-counter-box">
+                    <div class="counter-box-val" id="counter-unit-days">0</div>
+                    <div class="counter-box-lbl">Days</div>
+                  </div>
+                  <div class="counter-grid-sep" aria-hidden="true">:</div>
+                  <div class="live-counter-box">
+                    <div class="counter-box-val" id="counter-unit-hours">00</div>
+                    <div class="counter-box-lbl">Hours</div>
+                  </div>
+                  <div class="counter-grid-sep" aria-hidden="true">:</div>
+                  <div class="live-counter-box">
+                    <div class="counter-box-val" id="counter-unit-minutes">00</div>
+                    <div class="counter-box-lbl">Minutes</div>
+                  </div>
+                  <div class="counter-grid-sep" aria-hidden="true">:</div>
+                  <div class="live-counter-box">
+                    <div class="counter-box-val" id="counter-unit-seconds">00</div>
+                    <div class="counter-box-lbl">Seconds</div>
+                  </div>
+                </div>
+
+                <p class="together-counting-text">"And counting..."</p>
+
+                <div class="together-wax-seal" aria-hidden="true">
+                  <div class="wax-seal-stamp">
+                    <div class="stamp-inner">
+                      <span>FOREVER</span>
+                      <strong>❦</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDE CARD — MONTH COUNTER (Hanging, tilted +5deg) -->
+            <div class="together-side-wrap side-wrap-right">
+              <div class="together-side-card side-card-right">
+                <!-- Hanging Hook Ring & Ribbon Bow -->
+                <div class="card-hanger" aria-hidden="true">
+                  <span class="card-hanger-ring"></span>
+                  <span class="card-hanger-bow">🎀</span>
+                </div>
+
+                <div class="side-card-tape" aria-hidden="true"></div>
+                <div class="side-card-top-tag">MONTHS</div>
+                <div class="side-card-number" id="side-months-number">0</div>
+                <div class="side-card-label" id="side-months-label">MONTHS</div>
+                <div class="side-card-sub">
+                  <span class="side-card-sub-num" id="side-months-days">0</span>
+                  <span class="side-card-sub-lbl" id="side-months-days-label">DAYS</span>
+                </div>
+                <!-- Countdown to next monthly anniversary -->
+                <div class="side-card-countdown">
+                  <div class="side-card-countdown-lbl">NEXT MONTHLY ANNIVERSARY</div>
+                  <div class="side-card-countdown-val">
+                    <span class="side-card-countdown-num" id="side-months-next-days">0</span>
+                    <span class="side-card-countdown-unit" id="side-months-next-lbl">DAYS</span>
+                  </div>
+                </div>
+                <div class="side-card-heart" aria-hidden="true">❦</div>
+              </div>
+              <!-- Decorative curved support -->
+              <svg class="side-card-curve" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M10,4 Q60,28 110,4" fill="none" stroke="#c47687" stroke-width="1.2" opacity="0.45" />
+                <path d="M20,6 Q60,24 100,6" fill="none" stroke="#dfb867" stroke-width="0.8" opacity="0.35" />
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="together-actions-row">
+          <button class="btn-primary-pill btn-large-gold btn-nav-action" id="btn-together-story" data-next-page="5">
+            <span class="btn-shimmer" aria-hidden="true"></span>
+            <span class="btn-text">REVISIT OUR STORY</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <button class="btn-ghost-action btn-nav-action" id="btn-together-celebration" data-next-page="7">
+            <span>Revisit Celebration</span>
+          </button>
+
+          <button class="btn-ghost-action btn-nav-action" id="btn-together-replay" data-next-page="1">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>From Beginning</span>
           </button>
         </div>
 
